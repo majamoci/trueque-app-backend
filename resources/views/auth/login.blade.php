@@ -29,7 +29,7 @@
                 </label>
 
                 @error('email')
-                <span class="invalid-feedback" role="alert">
+                <span class="color-text--red">
                   <strong>{{ $message }}</strong>
                 </span>
                 @enderror
@@ -41,7 +41,7 @@
                 <label class="mdl-textfield__label" for="password">{{ __('Contraseña') }} *</label>
 
                 @error('password')
-                <span class="invalid-feedback" role="alert">
+                <span class="color-text--red">
                   <strong>{{ $message }}</strong>
                 </span>
                 @enderror
