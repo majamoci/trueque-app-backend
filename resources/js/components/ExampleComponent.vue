@@ -6,7 +6,7 @@
                     <div class="card-header">Example Component</div>
 
                     <div class="card-body">
-                        I'm an example component.
+                        <div id="reputation" class="mdl-progress mdl-js-progress progress--colored-red"></div>
                     </div>
                 </div>
             </div>

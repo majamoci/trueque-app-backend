@@ -26,6 +26,7 @@
     <script src="{{ asset('js/widgets/pie-chart/pie-charts-nvd3.min.js') }}"></script>
     <script src="{{ asset('js/widgets/table/table.min.js') }}"></script>
     <script src="{{ asset('js/widgets/todo/todo.min.js') }}"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet'
