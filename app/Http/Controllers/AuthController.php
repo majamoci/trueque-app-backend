@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Support\Facades\Validator;
 use App\User;
 use App\Role;
+use App\Profile;
 
 class AuthController extends Controller
 {
@@ -90,6 +90,16 @@ class AuthController extends Controller
           'name' => 'USER',
           'user_id' => $new_user->id
         ]);
+        $role->save();
+
+        // añadimos un perfil
+        $profile = new Profile;
+        $profile->firstname = '';
+        $profile->lastname = '';
+        $profile->gender = '';
+        $profile->city = '';
+        $profile->mobile = '';
+        $new_user->profile()->save($profile);
 
         // generamos el token con el rol USER
         $tokenResult = $new_user->createToken('authToken', ["role:USER"])->plainTextToken;
@@ -104,5 +114,9 @@ class AuthController extends Controller
             'errors' => $error,
         ], 500);
       }
+    }
+
+    public function resetPassword() {
+
     }
 }
