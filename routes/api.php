@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'AuthController@login');
 Route::post('/register', 'AuthController@register');
 Route::middleware(['auth:sanctum'])->group(function () {
+  Route::get('/verify/{email}', 'AuthController@role');
   Route::get('/users', 'UserController@findAll');
-  Route::put('/profile', 'UserController@updateProfile');
   Route::get('/profile/{name}', 'UserController@showProfile');
+  Route::put('/profile/{name}', 'UserController@updateProfile');
   Route::delete('/profile/{name}', 'UserController@destroy');
 });

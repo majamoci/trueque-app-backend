@@ -18,7 +18,7 @@ class UserController extends Controller
         $usuarios = User::all();
 
         return response($usuarios, 200)
-      ->header('Content-Type', 'application/json');
+            ->header('Content-Type', 'application/json');
     }
 
     /**
@@ -33,9 +33,9 @@ class UserController extends Controller
         $user->profile;
 
         return response()->json([
-        'status_code' => 200,
-        'data' => $user
-      ], 200);
+            'status_code' => 200,
+            'data' => $user
+        ], 200);
     }
 
     /**
@@ -45,9 +45,10 @@ class UserController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function updateProfile(Request $request)
+    public function updateProfile(Request $request, $name)
     {
-        $update_profile = Profile::firstWhere('user_id', $request->id);
+        $user = User::firstWhere('name', $name);
+        $update_profile = Profile::firstWhere('user_id', $user->id);
 
         $update_profile->firstname = $request->firstname;
         $update_profile->lastname = $request->lastname;
@@ -68,9 +69,9 @@ class UserController extends Controller
         $update_profile->save();
 
         return response()->json([
-      'status_code' => 200,
-      'message' => 'Información Actualizada !'
-    ], 200);
+            'status_code' => 200,
+            'message' => 'Información Actualizada !'
+        ], 200);
     }
 
     /**
@@ -82,12 +83,11 @@ class UserController extends Controller
     public function destroy($name)
     {
         $user = User::where('name', $name)->first();
-
         $user->delete();
 
         return response()->json([
-      'status_code' => 200,
-      'message' => 'Sentimos que te vayas !'
-    ], 200);
+            'status_code' => 200,
+            'message' => 'Sentimos que te vayas !'
+        ], 200);
     }
 }
