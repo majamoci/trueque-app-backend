@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function findAll()
     {
-        $usuarios = User::all();
+        $usuarios = User::select('id', 'name', 'email')
+            ->get();
 
         return response($usuarios, 200)
             ->header('Content-Type', 'application/json');

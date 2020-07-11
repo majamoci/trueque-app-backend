@@ -17,7 +17,7 @@ class AuthController extends Controller
             // validamos errores en el request
             $validator = Validator::make($request->all(), [
           'email' => 'email|exists:users,email|required',
-          'password' => 'required'
+          'password' => 'required|min:8'
         ]);
 
             if ($validator->fails()) {
@@ -66,7 +66,7 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'string|required',
                 'email' => 'email|unique:users,email|required',
-                'password' => 'required'
+                'password' => 'required|min:8'
             ]);
 
             if ($validator->fails()) {
