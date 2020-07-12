@@ -49,6 +49,7 @@ class AuthController extends Controller
             return response()->json([
             'status_code' => 200,
             'access_token' => $tokenResult,
+            'roles' => $roles,
             'token_type' => 'Bearer',
         ]);
         } catch (Exception $error) {
@@ -107,6 +108,7 @@ class AuthController extends Controller
             return response()->json([
                 'status_code' => 200,
                 'access_token' => $tokenResult,
+                'roles' => array('name' => 'USER'),
                 'token_type' => 'Bearer',
             ]);
         } catch (Exception $error) {
@@ -119,18 +121,5 @@ class AuthController extends Controller
 
     public function resetPassword()
     {
-    }
-
-    public function role($email)
-    {
-        // buscamos la usuario por el correo
-        $user = User::firstWhere('email', $email);
-        $roles = Role::where('user_id', $user->id)
-            ->select('name')->get();
-
-        return response()->json([
-            'status_code' => 200,
-            'names' => $roles,
-        ]);
     }
 }
