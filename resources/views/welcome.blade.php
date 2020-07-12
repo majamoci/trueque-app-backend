@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -52,15 +53,32 @@ access_token:string
 token_type:string = 'Bearer'
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [email?, password? ], Error?
+</code></pre><h3 id="POST-Send-Reset-Password" data-id="POST-Send-Reset-Password"><a class="anchor hidden-xs" href="#POST-Send-Reset-Password" title="POST-Send-Reset-Password"><span class="octicon octicon-link"></span></a><span>POST Send Reset Password</span></h3><p><span>Permite a un usuario registrado enviar una petición para recuperar la contraseña.</span></p><pre><code>/api/send-reset-password
+</code></pre><h5 id="BODY2" data-id="BODY"><a class="anchor hidden-xs" href="#BODY2" title="BODY2"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>reset_email:string
+</code></pre><p><span>Se genera un OTP al enviar la solicitud y se envía por correo al usuario registrado.</span></p><h5 id="RESPONSES2" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES2" title="RESPONSES2"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>message:string
+</code></pre><p><span>Error</span></p><pre><code>status_code:number
+errors: [reset_email?], Error?
+</code></pre><h3 id="POST-Verificar-OTP" data-id="POST-Verificar-OTP"><a class="anchor hidden-xs" href="#POST-Verificar-OTP" title="POST-Verificar-OTP"><span class="octicon octicon-link"></span></a><span>POST Verificar OTP</span></h3><p><span>Verifica si el OTP es válido.</span></p><pre><code>/api/verify-otp
+</code></pre><h5 id="BODY3" data-id="BODY"><a class="anchor hidden-xs" href="#BODY3" title="BODY3"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>verify_otp:number|size:6
+</code></pre><p><span>Devuelve un token.</span></p><h5 id="RESPONSES3" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES3" title="RESPONSES3"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>token:string
+</code></pre><p><span>Error</span></p><pre><code>status_code:number
+errors: [verify_otp?], Error?
+</code></pre><h3 id="POST-Cambiar-contraseña" data-id="POST-Cambiar-contraseña"><a class="anchor hidden-xs" href="#POST-Cambiar-contraseña" title="POST-Cambiar-contraseña"><span class="octicon octicon-link"></span></a><span>POST Cambiar contraseña</span></h3><p><span>Cambia la contraseña del usuario registrado.</span></p><pre><code>/api/reset-password
+</code></pre><h5 id="BODY4" data-id="BODY"><a class="anchor hidden-xs" href="#BODY4" title="BODY4"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>reset_password:string
+verify_password:string
+token:string
+</code></pre><p><span>Devuelve un mensaje de confirmación</span></p><h5 id="RESPONSES4" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES4" title="RESPONSES4"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>message:string
+</code></pre><p><span>Error</span></p><pre><code>status_code:number
+errors: [reset_password?,verify_password?], Error?
 </code></pre><h2 id="Rutas-Autenticadas" data-id="Rutas-Autenticadas"><a class="anchor hidden-xs" href="#Rutas-Autenticadas" title="Rutas-Autenticadas"><span class="octicon octicon-link"></span></a><span>Rutas Autenticadas</span></h2><hr><h3 id="GET-Role" data-id="GET-Role"><a class="anchor hidden-xs" href="#GET-Role" title="GET-Role"><span class="octicon octicon-link"></span></a><span>GET Role</span></h3><p><span>Verifica el rol de un usuario</span></p><pre><code>/api/verify/{email}
 </code></pre><h5 id="HEADERS" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS" title="HEADERS"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><p><span>Se genera un token al momento de loguearse</span></p><h3 id="GET-Profile" data-id="GET-Profile"><a class="anchor hidden-xs" href="#GET-Profile" title="GET-Profile"><span class="octicon octicon-link"></span></a><span>GET Profile</span></h3><p><span>Consulta el perfil de un usuario registrado</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
-</code></pre><h5 id="RESPONSES2" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES2" title="RESPONSES2"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
+</code></pre><h5 id="RESPONSES5" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES5" title="RESPONSES5"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 data:User
 </code></pre><h5 id="HEADERS1" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS1" title="HEADERS1"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><p><span>El token se genera cuando el usuario se registra o se loguea.</span></p><h3 id="PUT-Profile" data-id="PUT-Profile"><a class="anchor hidden-xs" href="#PUT-Profile" title="PUT-Profile"><span class="octicon octicon-link"></span></a><span>PUT Profile</span></h3><p><span>Actualiza el perfil de un usuario registrado</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
 </code></pre><h5 id="HEADERS2" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS2" title="HEADERS2"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
-</code></pre><h5 id="BODY2" data-id="BODY"><a class="anchor hidden-xs" href="#BODY2" title="BODY2"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>firstname:string
+</code></pre><h5 id="BODY5" data-id="BODY"><a class="anchor hidden-xs" href="#BODY5" title="BODY5"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>firstname:string
 lastanme:string
 gender:["Femenino, "Masculino"]
 birthday:date
@@ -75,15 +93,15 @@ instagram:url
 whatsapp:url
 telegram:url
 insterests:string (lista de items, separados en comas)
-</code></pre><h5 id="RESPONSES3" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES3" title="RESPONSES3"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
+</code></pre><h5 id="RESPONSES6" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES6" title="RESPONSES6"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 message:string
 </code></pre><h3 id="DELETE-User" data-id="DELETE-User"><a class="anchor hidden-xs" href="#DELETE-User" title="DELETE-User"><span class="octicon octicon-link"></span></a><span>DELETE User</span></h3><p><span>Elimina un usuario</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
 </code></pre><h5 id="HEADERS3" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS3" title="HEADERS3"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
-</code></pre><h5 id="RESPONSES4" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES4" title="RESPONSES4"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
+</code></pre><h5 id="RESPONSES7" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES7" title="RESPONSES7"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 message:string
 </code></pre><h3 id="GET-Users" data-id="GET-Users"><a class="anchor hidden-xs" href="#GET-Users" title="GET-Users"><span class="octicon octicon-link"></span></a><span>GET Users</span></h3><p><span>Obtiene todos los usuarios</span></p><pre><code>/api/users
 </code></pre><h5 id="HEADERS4" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS4" title="HEADERS4"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
-</code></pre><h5 id="RESPONSES5" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES5" title="RESPONSES5"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>[
+</code></pre><h5 id="RESPONSES8" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES8" title="RESPONSES8"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>[
     {
         "id": number,
         "name": string,
@@ -98,50 +116,56 @@ message:string
                 <i class="fa fa-bars"></i>
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
-                <div class="toc expand"><ul class="nav">
+                <div class="toc"><ul class="nav">
 <li class=""><a href="#Hecho-con-Hackmdio" title="Hecho con Hackmd.io">Hecho con Hackmd.io</a></li>
 <li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
 <li class=""><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
-<li class=""><a href="#POST-Register" title="POST Register">POST Register</a></li>
-<li class=""><a href="#POST-Login" title="POST Login">POST Login</a></li>
+<li><a href="#POST-Register" title="POST Register">POST Register</a></li>
+<li><a href="#POST-Login" title="POST Login">POST Login</a></li>
+<li><a href="#POST-Send-Reset-Password" title="POST Send Reset Password">POST Send Reset Password</a></li>
+<li><a href="#POST-Verificar-OTP" title="POST Verificar OTP">POST Verificar OTP</a></li>
+<li class=""><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
 </ul>
 </li>
-<li class=""><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
-<li class=""><a href="#GET-Role" title="GET Role">GET Role</a></li>
-<li class=""><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
+<li><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
+<li><a href="#GET-Role" title="GET Role">GET Role</a></li>
+<li><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
 <li><a href="#PUT-Profile" title="PUT Profile">PUT Profile</a></li>
 <li><a href="#DELETE-User" title="DELETE User">DELETE User</a></li>
-<li class=""><a href="#GET-Users" title="GET Users">GET Users</a></li>
+<li><a href="#GET-Users" title="GET Users">GET Users</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div><div class="toc-menu"><a class="expand-toggle" href="#">Collapse all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
             </ul>
         </div>
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
-        <div class="toc expand"><ul class="nav">
+        <div class="toc"><ul class="nav">
 <li class=""><a href="#Hecho-con-Hackmdio" title="Hecho con Hackmd.io">Hecho con Hackmd.io</a></li>
 <li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
 <li class=""><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
-<li class=""><a href="#POST-Register" title="POST Register">POST Register</a></li>
-<li class=""><a href="#POST-Login" title="POST Login">POST Login</a></li>
+<li><a href="#POST-Register" title="POST Register">POST Register</a></li>
+<li><a href="#POST-Login" title="POST Login">POST Login</a></li>
+<li><a href="#POST-Send-Reset-Password" title="POST Send Reset Password">POST Send Reset Password</a></li>
+<li><a href="#POST-Verificar-OTP" title="POST Verificar OTP">POST Verificar OTP</a></li>
+<li class=""><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
 </ul>
 </li>
-<li class=""><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
-<li class=""><a href="#GET-Role" title="GET Role">GET Role</a></li>
-<li class=""><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
+<li><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
+<li><a href="#GET-Role" title="GET Role">GET Role</a></li>
+<li><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
 <li><a href="#PUT-Profile" title="PUT Profile">PUT Profile</a></li>
 <li><a href="#DELETE-User" title="DELETE User">DELETE User</a></li>
-<li class=""><a href="#GET-Users" title="GET Users">GET Users</a></li>
+<li><a href="#GET-Users" title="GET Users">GET Users</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div><div class="toc-menu"><a class="expand-toggle" href="#">Collapse all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
