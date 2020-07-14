@@ -72,7 +72,7 @@ class AuthController extends Controller
         try {
             // validamos errores en el request
             $validator = Validator::make($request->all(), [
-                'name' => 'string|required',
+                'username' => 'string|required',
                 'email' => 'email|unique:users,email|required',
                 'password' => 'required|min:8'
             ]);
@@ -87,7 +87,7 @@ class AuthController extends Controller
             // creamos el nuevo usuario
             $new_user = new User;
             $new_user = User::create([
-                'name' => $request->name,
+                'name' => $request->username,
                 'email' => $request->email,
                 'password' => Hash::make($request->password)
             ]);
@@ -115,7 +115,7 @@ class AuthController extends Controller
             return response()->json([
                 'status_code' => 200,
                 'access_token' => $tokenResult,
-                'roles' => array('name' => 'USER'),
+                'roles' => 'USER',
                 'token_type' => 'Bearer',
             ]);
         } catch (Exception $error) {
@@ -153,7 +153,7 @@ class AuthController extends Controller
             ]);
             $reset->save();
 
-            Mail::to($request->reset_email)->send(new SendResetPassword($otp));
+            // Mail::to($request->reset_email)->send(new SendResetPassword($otp));
 
             return response()->json([
                 'message' => "Mensaje Enviado, por favor revisa tu bandeja de entrada."
@@ -181,15 +181,16 @@ class AuthController extends Controller
                 ], 403);
             }
 
+            $status_code = 200;
             $message = Reset::where('code', $request->verify_otp)
                 ->select('email')->first();
             if(!$message) {
-                $message = array("error" => "El código es incorrecto.");
+                $status_code = 403;
+                $message = array("message" => "El código es incorrecto.");
             } else {
                 $message = array('token' => encrypt($message->email));
             }
-
-            return response()->json($message, 200);
+            return response()->json($message, $status_code);
         } catch (Exception $error) {
             return response()->json([
                 'status_code' => 500,

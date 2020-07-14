@@ -13,7 +13,17 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'thegreatyamori',
-            'email' => 'jersonmorocho16@gmail.com',
+            'email' => 'thegreatyamori@truequeapp.com',
+            'password' => Hash::make('123456789')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'majamoci',
+            'email' => 'majamoci@truequeapp.com',
+            'password' => Hash::make('123456789')
+        ]);
+        DB::table('users')->insert([
+            'name' => 'rcaiza',
+            'email' => 'rcaiza@truequeapp.com',
             'password' => Hash::make('123456789')
         ]);
     }
