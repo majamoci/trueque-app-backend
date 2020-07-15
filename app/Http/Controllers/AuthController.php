@@ -11,7 +11,7 @@ use App\User;
 use App\Role;
 use App\Reset;
 use App\Profile;
-use App\Mail\ResetPassword;
+use App\Mail\SendResetPassword;
 
 class AuthController extends Controller
 {
@@ -205,6 +205,7 @@ class AuthController extends Controller
             $validator = Validator::make($request->all(), [
                 'reset_password' => 'required|min:8|max:32',
                 'verify_password' => 'same:reset_password',
+                'token' => 'required'
             ]);
 
             // si la validacion falla
@@ -224,7 +225,7 @@ class AuthController extends Controller
             $user->save();
 
             return response()->json([
-                'message' => "La constraseña se cambió.",
+                'message' => "La contraseña se cambió.",
             ], 200);
         } catch (Exception $error) {
             return response()->json([
