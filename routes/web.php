@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/migrate', 'DBController@migrate');
+Route::get('/refresh', 'DBController@refresh');
+Route::get('/seed', 'DBController@createUsers');
