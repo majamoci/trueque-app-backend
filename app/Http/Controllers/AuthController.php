@@ -86,19 +86,15 @@ class AuthController extends Controller
 
             // creamos el nuevo usuario
             $new_user = new User;
-            $new_user = User::create([
-                'name' => $request->username,
-                'email' => $request->email,
-                'password' => Hash::make($request->password)
-            ]);
+            $new_user->name = $request->username;
+            $new_user->email = $request->email;
+            $new_user->password = Hash::make($request->password);
             $new_user->save();
 
             // añadimos el rol USER
             $role = new Role;
-            $role = Role::create([
-                'name' => 'USER',
-                'user_id' => $new_user->id
-            ]);
+            $role->name = 'USER';
+            $role->user_id = $new_user->id;
             $role->save();
 
             // añadimos un perfil
@@ -147,10 +143,9 @@ class AuthController extends Controller
             Log::info("OTP: {$otp}");
 
             // guardamos en la DB
-            $reset = new Reset([
-                'email' => $request->reset_email,
-                'code' => $otp,
-            ]);
+            $reset = new Reset;
+            $rese->email = $request->reset_email;
+            $rese->code = $otp;
             $reset->save();
 
             // Mail::to($request->reset_email)->send(new SendResetPassword($otp));

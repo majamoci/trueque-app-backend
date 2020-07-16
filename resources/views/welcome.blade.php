@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="mobile-web-app-capable" content="yes">
     <title>
-        Trueque API
+        Trueque API DOCS - HackMD
     </title>
     <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
     <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
@@ -35,13 +35,14 @@
 </head>
 
 <body>
-    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="Hecho-con-Hackmdio" data-id="Hecho-con-Hackmdio"><a class="anchor hidden-xs" href="#Hecho-con-Hackmdio" title="Hecho-con-Hackmdio"><span class="octicon octicon-link"></span></a><a href="https://hackmd.io/-UaK6bTGTueEIF9h60zBJQ?both" target="_blank" rel="noopener"><span>Hecho con Hackmd.io</span></a></h1><h1 id="URL" data-id="URL"><a class="anchor hidden-xs" href="#URL" title="URL"><span class="octicon octicon-link"></span></a><span>URL</span></h1><pre><code>https://trueque-admin.herokuapp.com
+    <div id="doc" class="markdown-body container-fluid comment-inner comment-enabled" data-hard-breaks="true"><h1 id="Trueque-API-DOCS" data-id="Trueque-API-DOCS"><a class="anchor hidden-xs" href="#Trueque-API-DOCS" title="Trueque-API-DOCS"><span class="octicon octicon-link"></span></a><span>Trueque API DOCS</span></h1><p><a href="https://hackmd.io/-UaK6bTGTueEIF9h60zBJQ?both" target="_blank" rel="noopener"><span>Hecho con HackMD</span></a></p><h1 id="URL" data-id="URL"><a class="anchor hidden-xs" href="#URL" title="URL"><span class="octicon octicon-link"></span></a><span>URL</span></h1><pre><code>https://trueque-admin.herokuapp.com
 </code></pre><h2 id="Rutas-Auth" data-id="Rutas-Auth"><a class="anchor hidden-xs" href="#Rutas-Auth" title="Rutas-Auth"><span class="octicon octicon-link"></span></a><span>Rutas Auth</span></h2><hr><h3 id="POST-Register" data-id="POST-Register"><a class="anchor hidden-xs" href="#POST-Register" title="POST-Register"><span class="octicon octicon-link"></span></a><span>POST Register</span></h3><p><span>Registra un nuevo usuario con rol:USER</span></p><pre><code>/api/register
 </code></pre><h5 id="BODY" data-id="BODY"><a class="anchor hidden-xs" href="#BODY" title="BODY"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>name:string
 email:string
 password:string
 </code></pre><p><span>Se genera un token al momento de registrarse</span></p><h5 id="RESPONSES" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES" title="RESPONSES"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 access_token:string
+roles:['ADMIN'?, 'USER'?]
 token_type:string = 'Bearer'
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [email?, password? ], Error?
@@ -50,6 +51,7 @@ errors: [email?, password? ], Error?
 password:string
 </code></pre><p><span>Se genera un token al momento de loguearse</span></p><h5 id="RESPONSES1" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES1" title="RESPONSES1"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 access_token:string
+roles:['ADMIN'?, 'USER'?]
 token_type:string = 'Bearer'
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [email?, password? ], Error?
@@ -70,14 +72,12 @@ token:string
 </code></pre><p><span>Devuelve un mensaje de confirmación</span></p><h5 id="RESPONSES4" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES4" title="RESPONSES4"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>message:string
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [reset_password?,verify_password?], Error?
-</code></pre><h2 id="Rutas-Autenticadas" data-id="Rutas-Autenticadas"><a class="anchor hidden-xs" href="#Rutas-Autenticadas" title="Rutas-Autenticadas"><span class="octicon octicon-link"></span></a><span>Rutas Autenticadas</span></h2><hr><h3 id="GET-Role" data-id="GET-Role"><a class="anchor hidden-xs" href="#GET-Role" title="GET-Role"><span class="octicon octicon-link"></span></a><span>GET Role</span></h3><p><span>Verifica el rol de un usuario</span></p><pre><code>/api/verify/{email}
-</code></pre><h5 id="HEADERS" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS" title="HEADERS"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
-</code></pre><p><span>Se genera un token al momento de loguearse</span></p><h3 id="GET-Profile" data-id="GET-Profile"><a class="anchor hidden-xs" href="#GET-Profile" title="GET-Profile"><span class="octicon octicon-link"></span></a><span>GET Profile</span></h3><p><span>Consulta el perfil de un usuario registrado</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
+</code></pre><h2 id="Rutas-Autenticadas" data-id="Rutas-Autenticadas"><a class="anchor hidden-xs" href="#Rutas-Autenticadas" title="Rutas-Autenticadas"><span class="octicon octicon-link"></span></a><span>Rutas Autenticadas</span></h2><hr><h3 id="GET-Profile" data-id="GET-Profile"><a class="anchor hidden-xs" href="#GET-Profile" title="GET-Profile"><span class="octicon octicon-link"></span></a><span>GET Profile</span></h3><p><span>Consulta el perfil de un usuario registrado</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
 </code></pre><h5 id="RESPONSES5" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES5" title="RESPONSES5"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 data:User
-</code></pre><h5 id="HEADERS1" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS1" title="HEADERS1"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="HEADERS" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS" title="HEADERS"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><p><span>El token se genera cuando el usuario se registra o se loguea.</span></p><h3 id="PUT-Profile" data-id="PUT-Profile"><a class="anchor hidden-xs" href="#PUT-Profile" title="PUT-Profile"><span class="octicon octicon-link"></span></a><span>PUT Profile</span></h3><p><span>Actualiza el perfil de un usuario registrado</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
-</code></pre><h5 id="HEADERS2" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS2" title="HEADERS2"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="HEADERS1" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS1" title="HEADERS1"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><h5 id="BODY5" data-id="BODY"><a class="anchor hidden-xs" href="#BODY5" title="BODY5"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>firstname:string
 lastanme:string
 gender:["Femenino, "Masculino"]
@@ -96,11 +96,11 @@ insterests:string (lista de items, separados en comas)
 </code></pre><h5 id="RESPONSES6" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES6" title="RESPONSES6"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 message:string
 </code></pre><h3 id="DELETE-User" data-id="DELETE-User"><a class="anchor hidden-xs" href="#DELETE-User" title="DELETE-User"><span class="octicon octicon-link"></span></a><span>DELETE User</span></h3><p><span>Elimina un usuario</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
-</code></pre><h5 id="HEADERS3" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS3" title="HEADERS3"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="HEADERS2" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS2" title="HEADERS2"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><h5 id="RESPONSES7" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES7" title="RESPONSES7"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
 message:string
 </code></pre><h3 id="GET-Users" data-id="GET-Users"><a class="anchor hidden-xs" href="#GET-Users" title="GET-Users"><span class="octicon octicon-link"></span></a><span>GET Users</span></h3><p><span>Obtiene todos los usuarios</span></p><pre><code>/api/users
-</code></pre><h5 id="HEADERS4" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS4" title="HEADERS4"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="HEADERS3" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS3" title="HEADERS3"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><h5 id="RESPONSES8" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES8" title="RESPONSES8"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>[
     {
         "id": number,
@@ -109,6 +109,24 @@ message:string
     },
     ...
 ]
+</code></pre><h2 id="Publicaciones" data-id="Publicaciones"><a class="anchor hidden-xs" href="#Publicaciones" title="Publicaciones"><span class="octicon octicon-link"></span></a><span>Publicaciones</span></h2><h3 id="POST-Publicacion" data-id="POST-Publicacion"><a class="anchor hidden-xs" href="#POST-Publicacion" title="POST-Publicacion"><span class="octicon octicon-link"></span></a><span>POST Publicacion</span></h3><p><span>Añade una publicacion de un usuario</span></p><pre><code>/api/publication
+</code></pre><h5 id="HEADERS4" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS4" title="HEADERS4"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="BODY6" data-id="BODY"><a class="anchor hidden-xs" href="#BODY6" title="BODY6"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>title:string
+price:number
+address:string
+category:string
+available:one|multiple
+description:string
+active:draft|published
+</code></pre><h5 id="RESPONSES9" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES9" title="RESPONSES9"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>[
+    {
+        "status_code": 200,
+        "message": "Publicación creada"
+    }
+    ...
+]
+</code></pre><p><span>Error</span></p><pre><code>status_code:number
+errors: [title?, price?, address?, category?, available?, description?, active? ], Error?
 </code></pre></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
@@ -117,22 +135,25 @@ message:string
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
                 <div class="toc"><ul class="nav">
-<li class=""><a href="#Hecho-con-Hackmdio" title="Hecho con Hackmd.io">Hecho con Hackmd.io</a></li>
-<li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
-<li class=""><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
+<li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
+<li><a href="#URL" title="URL">URL</a><ul class="nav">
+<li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
 <li><a href="#POST-Register" title="POST Register">POST Register</a></li>
 <li><a href="#POST-Login" title="POST Login">POST Login</a></li>
 <li><a href="#POST-Send-Reset-Password" title="POST Send Reset Password">POST Send Reset Password</a></li>
 <li><a href="#POST-Verificar-OTP" title="POST Verificar OTP">POST Verificar OTP</a></li>
-<li class=""><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
+<li><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
 </ul>
 </li>
 <li><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
-<li><a href="#GET-Role" title="GET Role">GET Role</a></li>
 <li><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
 <li><a href="#PUT-Profile" title="PUT Profile">PUT Profile</a></li>
 <li><a href="#DELETE-User" title="DELETE User">DELETE User</a></li>
 <li><a href="#GET-Users" title="GET Users">GET Users</a></li>
+</ul>
+</li>
+<li><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
 </ul>
 </li>
 </ul>
@@ -144,22 +165,25 @@ message:string
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
         <div class="toc"><ul class="nav">
-<li class=""><a href="#Hecho-con-Hackmdio" title="Hecho con Hackmd.io">Hecho con Hackmd.io</a></li>
-<li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
-<li class=""><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
+<li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
+<li><a href="#URL" title="URL">URL</a><ul class="nav">
+<li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
 <li><a href="#POST-Register" title="POST Register">POST Register</a></li>
 <li><a href="#POST-Login" title="POST Login">POST Login</a></li>
 <li><a href="#POST-Send-Reset-Password" title="POST Send Reset Password">POST Send Reset Password</a></li>
 <li><a href="#POST-Verificar-OTP" title="POST Verificar OTP">POST Verificar OTP</a></li>
-<li class=""><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
+<li><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
 </ul>
 </li>
 <li><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
-<li><a href="#GET-Role" title="GET Role">GET Role</a></li>
 <li><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
 <li><a href="#PUT-Profile" title="PUT Profile">PUT Profile</a></li>
 <li><a href="#DELETE-User" title="DELETE User">DELETE User</a></li>
 <li><a href="#GET-Users" title="GET Users">GET Users</a></li>
+</ul>
+</li>
+<li><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
 </ul>
 </li>
 </ul>

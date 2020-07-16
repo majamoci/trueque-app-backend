@@ -20,8 +20,15 @@ Route::post('/send-reset-password', 'AuthController@sendResetPassword');
 Route::post('/verify-otp', 'AuthController@verifyOTP');
 Route::post('/reset-password', 'AuthController@resetPassword');
 Route::middleware(['auth:sanctum'])->group(function () {
-  Route::get('/users', 'UserController@findAll');
-  Route::get('/profile/{name}', 'UserController@showProfile');
-  Route::put('/profile/{name}', 'UserController@updateProfile');
-  Route::delete('/profile/{name}', 'UserController@destroy');
+    Route::get('/users', 'UserController@findAll');
+    Route::get('/profile/{name}', 'UserController@showProfile');
+    Route::put('/profile/{name}', 'UserController@updateProfile');
+    Route::delete('/profile/{name}', 'UserController@destroy');
+    //   -----------------------------------------------------
+    // Route::get('/publication')
+    // Route::get('/publication/{id}')
+    Route::post('/publication', 'PublicationController@store');
+    // Route::put('/publication')
+    // Route::delete('/publication')
+    //   -----------------------------------------------------
 });
