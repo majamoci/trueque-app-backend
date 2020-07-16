@@ -148,7 +148,7 @@ class AuthController extends Controller
             $rese->code = $otp;
             $reset->save();
 
-            // Mail::to($request->reset_email)->send(new SendResetPassword($otp));
+            Mail::to($request->reset_email)->send(new SendResetPassword($otp));
 
             return response()->json([
                 'message' => "Mensaje Enviado, por favor revisa tu bandeja de entrada."
