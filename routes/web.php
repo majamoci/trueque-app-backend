@@ -18,4 +18,3 @@ Route::get('/', function () {
 });
 Route::get('/migrate', 'DBController@migrate');
 Route::get('/refresh', 'DBController@refresh');
-Route::get('/seed', 'DBController@createUsers');
