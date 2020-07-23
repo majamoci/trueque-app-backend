@@ -25,10 +25,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::put('/profile/{name}', 'UserController@updateProfile');
     Route::delete('/profile/{name}', 'UserController@destroy');
     //   -----------------------------------------------------
-    // Route::get('/publication')
-    // Route::get('/publication/{id}')
-    Route::post('/publication', 'PublicationController@store');
-    // Route::put('/publication')
-    // Route::delete('/publication')
+    Route::middleware(['permission:USER'])->group(function () {
+        Route::get('/publication/{state}', 'PublicationController@index');
+        // Route::get('/publication/one/{id}')
+        Route::post('/publication', 'PublicationController@store');
+        // Route::put('/publication')
+        // Route::delete('/publication')
+    });
+
     //   -----------------------------------------------------
 });

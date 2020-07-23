@@ -32,9 +32,7 @@ class AuthController extends Controller
             }
 
             // buscamos el usuario
-            $user = User::where('email', $request->email)->first();
-            // buscamos el rol
-            $roles = Role::where('user_id', $user->id)->select('name')->get();
+            $user = User::where('email', $request->email)->with('roles')->first();
 
             if (!Hash::check($request->password, $user->password, [])) {
                 return response()->json([
@@ -43,9 +41,9 @@ class AuthController extends Controller
             ], 403);
             }
 
-            // asignamos el rol/es al usuario
+            // asignamos el roles al usuario
             $_roles = [];
-            foreach ($roles as $role) {
+            foreach ($user->roles as $role) {
                 $_roles[] = "role:{$role->name}";
             }
 
@@ -56,7 +54,7 @@ class AuthController extends Controller
             return response()->json([
                 'status_code' => 200,
                 'access_token' => $tokenResult,
-                'roles' => $roles,
+                'roles' => $user->roles()->select('name')->get(),
                 'token_type' => 'Bearer',
             ]);
         } catch (Exception $error) {

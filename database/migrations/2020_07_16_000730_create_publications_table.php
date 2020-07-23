@@ -21,8 +21,7 @@ class CreatePublicationsTable extends Migration
             $table->string('category', 100);
             $table->enum('available', ['one', 'multiple']);
             $table->string('description', 500);
-            $table->json('photos');
-            $table->enum('active', ['draft', 'published']);
+            $table->json('photos')->nullable();
             $table->timestamps();
         });
     }

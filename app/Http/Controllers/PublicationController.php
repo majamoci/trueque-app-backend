@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\User;
 use App\Publication;
+use App\PubTransaction;
 
 class PublicationController extends Controller
 {
@@ -14,9 +16,19 @@ class PublicationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($state)
     {
-        //
+        $user_id = auth()->user()->id;
+
+        // TODO: paginar las peticiones a futuro
+        $publications = PubTransaction::where('user_id', $user_id)
+            ->where('state', $state)
+            ->with('pub:id,title,price,category,photos')->get('pub_id');
+
+        return response()->json([
+            'status_code' => 200,
+            'publications' => $publications
+        ], 200);
     }
 
     /**
@@ -28,16 +40,18 @@ class PublicationController extends Controller
     public function store(Request $request)
     {
         try {
+            $user_id = auth()->user()->id;
+
             // validamos errores en el request
             $validator = Validator::make($request->all(), [
                 'title' => 'required|string|min:3|max:100',
                 'price' => 'required|numeric',
                 'address' => 'required|string|max:100',
-                'category' => 'required|string|max:100',
+                'category' => 'required|string|max:50',
                 'available' => ['required', 'string', Rule::in(['one', 'multiple'])],
                 'description' => 'required|string|min:10|max:500',
                 'photos' => 'nullable',
-                'active' => ['required', 'string', Rule::in(['draft', 'published'])]
+                'state' => ['required', 'string', Rule::in(['draft', 'published'])]
             ]);
 
             // si la validacion falla
@@ -49,7 +63,7 @@ class PublicationController extends Controller
             }
 
             // verificamos si se subieron archivos
-            $json_files = "";
+            $json_files = "{}";
             if ($request->hasFile('photos')) {
                 $files = $request->photos;
                 $new_files = [];
@@ -68,6 +82,7 @@ class PublicationController extends Controller
                     );
                 }
                 // transformamos el array a json
+
                 $json_files = json_encode($new_files);
             }
 
@@ -80,8 +95,14 @@ class PublicationController extends Controller
             $new_pub->available = $request->available;
             $new_pub->description = $request->description;
             $new_pub->photos = $json_files;
-            $new_pub->active = $request->active;
             $new_pub->save();
+
+            // creamos la transaccion
+            $new_transac = new PubTransaction;
+            $new_transac->state = $request->state;
+            $new_transac->user_id = $user_id;
+            $new_transac->pub_id = $new_pub->id;
+            $new_transac->save();
 
             return response()->json([
                 'status_code' => 200,

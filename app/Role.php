@@ -10,7 +10,7 @@ class Role extends Model
       'name', 'user_id'
   ];
 
-  public function post()
+  public function user()
   {
     return $this->belongsTo('App\User');
   }

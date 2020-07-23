@@ -26,5 +26,10 @@ class UsersTableSeeder extends Seeder
             'email' => 'rcaiza@truequeapp.com',
             'password' => Hash::make('123456789')
         ]);
+        DB::table('users')->insert([
+            'name' => 'joselito',
+            'email' => 'joselito@gmail.com',
+            'password' => Hash::make('123456789')
+        ]);
     }
 }
