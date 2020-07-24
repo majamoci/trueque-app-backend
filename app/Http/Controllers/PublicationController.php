@@ -21,8 +21,8 @@ class PublicationController extends Controller
         $user_id = auth()->user()->id;
 
         // TODO: paginar las peticiones a futuro
-        $publications = PubTransaction::where('user_id', $user_id)
-            ->where('state', $state)
+        $publications = PubTransaction::whereUserid($user_id)
+            ->whereState($state)
             ->with('pub:id,title,price,category,photos')->get('pub_id');
 
         return response()->json([
@@ -50,7 +50,7 @@ class PublicationController extends Controller
                 'category' => 'required|string|max:50',
                 'available' => ['required', 'string', Rule::in(['one', 'multiple'])],
                 'description' => 'required|string|min:10|max:500',
-                'photos' => 'nullable',
+                'photos' => 'required',
                 'state' => ['required', 'string', Rule::in(['draft', 'published'])]
             ]);
 
@@ -107,6 +107,7 @@ class PublicationController extends Controller
             return response()->json([
                 'status_code' => 200,
                 'message' => 'Publicación creada',
+                'id' => $new_transac->id
             ], 200);
         } catch (Exception $error) {
             return response()->json([
@@ -134,9 +135,54 @@ class PublicationController extends Controller
      * @param  \App\Publication  $Publication
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Publication $Publication)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            // validamos errores en el request
+            $validator = Validator::make($request->all(), [
+                'title' => 'required|string|min:3|max:100',
+                'price' => 'required|numeric',
+                'address' => 'required|string|max:100',
+                'category' => 'required|string|max:50',
+                'available' => ['required', 'string', Rule::in(['one', 'multiple'])],
+                'description' => 'required|string|min:10|max:500',
+                'state' => ['required', 'string', Rule::in(['draft', 'published'])]
+            ]);
+
+            // si la validacion falla
+            if ($validator->fails()) {
+                return response()->json([
+                    'status_code' => 403,
+                    'errors' => $validator->errors(),
+                ], 403);
+            }
+
+            // actualizamos la transaccion
+            $update_transac = PubTransaction::find($id);
+            $update_transac->state = $request->state;
+            $update_transac->save();
+
+            // actualizamos la publicacion
+            $update_pub = Publication::find($update_transac->pub->id);
+            $update_pub->title = $request->title;
+            $update_pub->price = $request->price;
+            $update_pub->address = $request->address;
+            $update_pub->category = $request->category;
+            $update_pub->available = $request->available;
+            $update_pub->description = $request->description;
+            // $update_pub->photos = $json_files;
+            $update_pub->save();
+
+            return response()->json([
+                'status_code' => 200,
+                'message' => 'Publicación actualizada',
+            ], 200);
+        } catch (Exception $error) {
+            return response()->json([
+                'status_code' => 500,
+                'errors' => $error,
+            ], 500);
+        }
     }
 
     /**

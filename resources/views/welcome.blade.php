@@ -40,29 +40,29 @@
 </code></pre><h5 id="BODY" data-id="BODY"><a class="anchor hidden-xs" href="#BODY" title="BODY"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>name:string
 email:string
 password:string
-</code></pre><p><span>Se genera un token al momento de registrarse</span></p><h5 id="RESPONSES" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES" title="RESPONSES"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
-access_token:string
-roles:['ADMIN'?, 'USER'?]
-token_type:string = 'Bearer'
+</code></pre><p><span>Se genera un token al momento de registrarse</span></p><h5 id="RESPONSES" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES" title="RESPONSES"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
+access_token<span class="token operator">:</span>string
+roles<span class="token operator">:</span><span class="token punctuation">[</span>'ADMIN'?<span class="token punctuation">,</span> 'USER'?<span class="token punctuation">]</span>
+token_type<span class="token operator">:</span>string = 'Bearer'
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [email?, password? ], Error?
 </code></pre><h3 id="POST-Login" data-id="POST-Login"><a class="anchor hidden-xs" href="#POST-Login" title="POST-Login"><span class="octicon octicon-link"></span></a><span>POST Login</span></h3><p><span>Permite a un usuario registrado obtener un token para realizar peticiones</span></p><pre><code>/api/login
 </code></pre><h5 id="BODY1" data-id="BODY"><a class="anchor hidden-xs" href="#BODY1" title="BODY1"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>email:string
 password:string
-</code></pre><p><span>Se genera un token al momento de loguearse</span></p><h5 id="RESPONSES1" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES1" title="RESPONSES1"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
-access_token:string
-roles:['ADMIN'?, 'USER'?]
-token_type:string = 'Bearer'
+</code></pre><p><span>Se genera un token al momento de loguearse</span></p><h5 id="RESPONSES1" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES1" title="RESPONSES1"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
+access_token<span class="token operator">:</span>string
+roles<span class="token operator">:</span><span class="token punctuation">[</span>'ADMIN'?<span class="token punctuation">,</span> 'USER'?<span class="token punctuation">]</span>
+token_type<span class="token operator">:</span>string = 'Bearer'
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [email?, password? ], Error?
 </code></pre><h3 id="POST-Send-Reset-Password" data-id="POST-Send-Reset-Password"><a class="anchor hidden-xs" href="#POST-Send-Reset-Password" title="POST-Send-Reset-Password"><span class="octicon octicon-link"></span></a><span>POST Send Reset Password</span></h3><p><span>Permite a un usuario registrado enviar una petición para recuperar la contraseña.</span></p><pre><code>/api/send-reset-password
 </code></pre><h5 id="BODY2" data-id="BODY"><a class="anchor hidden-xs" href="#BODY2" title="BODY2"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>reset_email:string
-</code></pre><p><span>Se genera un OTP al enviar la solicitud y se envía por correo al usuario registrado.</span></p><h5 id="RESPONSES2" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES2" title="RESPONSES2"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>message:string
+</code></pre><p><span>Se genera un OTP al enviar la solicitud y se envía por correo al usuario registrado.</span></p><h5 id="RESPONSES2" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES2" title="RESPONSES2"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">message<span class="token operator">:</span>string
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [reset_email?], Error?
 </code></pre><h3 id="POST-Verificar-OTP" data-id="POST-Verificar-OTP"><a class="anchor hidden-xs" href="#POST-Verificar-OTP" title="POST-Verificar-OTP"><span class="octicon octicon-link"></span></a><span>POST Verificar OTP</span></h3><p><span>Verifica si el OTP es válido.</span></p><pre><code>/api/verify-otp
 </code></pre><h5 id="BODY3" data-id="BODY"><a class="anchor hidden-xs" href="#BODY3" title="BODY3"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>verify_otp:number|size:6
-</code></pre><p><span>Devuelve un token.</span></p><h5 id="RESPONSES3" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES3" title="RESPONSES3"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>token:string
+</code></pre><p><span>Devuelve un token.</span></p><h5 id="RESPONSES3" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES3" title="RESPONSES3"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">token<span class="token operator">:</span>string
 </code></pre><p><span>Error</span></p><pre><code>status_code:number
 errors: [verify_otp?], Error?
 </code></pre><h3 id="POST-Cambiar-contraseña" data-id="POST-Cambiar-contraseña"><a class="anchor hidden-xs" href="#POST-Cambiar-contraseña" title="POST-Cambiar-contraseña"><span class="octicon octicon-link"></span></a><span>POST Cambiar contraseña</span></h3><p><span>Cambia la contraseña del usuario registrado.</span></p><pre><code>/api/reset-password
@@ -93,8 +93,8 @@ instagram:url
 whatsapp:url
 telegram:url
 insterests:string (lista de items, separados en comas)
-</code></pre><h5 id="RESPONSES6" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES6" title="RESPONSES6"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
-message:string
+</code></pre><h5 id="RESPONSES6" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES6" title="RESPONSES6"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span><span class="token number">200</span>
+message<span class="token operator">:</span>string
 </code></pre><h3 id="DELETE-User" data-id="DELETE-User"><a class="anchor hidden-xs" href="#DELETE-User" title="DELETE-User"><span class="octicon octicon-link"></span></a><span>DELETE User</span></h3><p><span>Elimina un usuario</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
 </code></pre><h5 id="HEADERS2" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS2" title="HEADERS2"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><h5 id="RESPONSES7" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES7" title="RESPONSES7"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
@@ -109,24 +109,55 @@ message:string
     },
     ...
 ]
-</code></pre><h2 id="Publicaciones" data-id="Publicaciones"><a class="anchor hidden-xs" href="#Publicaciones" title="Publicaciones"><span class="octicon octicon-link"></span></a><span>Publicaciones</span></h2><h3 id="POST-Publicacion" data-id="POST-Publicacion"><a class="anchor hidden-xs" href="#POST-Publicacion" title="POST-Publicacion"><span class="octicon octicon-link"></span></a><span>POST Publicacion</span></h3><p><span>Añade una publicacion de un usuario</span></p><pre><code>/api/publication
+</code></pre><h2 id="Publicaciones" data-id="Publicaciones" data-original-title="" title=""><a class="anchor hidden-xs" href="#Publicaciones" title="Publicaciones"><span class="octicon octicon-link"></span></a><span>Publicaciones</span></h2><hr><h3 id="GET-Publicaciones" data-id="GET-Publicaciones"><a class="anchor hidden-xs" href="#GET-Publicaciones" title="GET-Publicaciones"><span class="octicon octicon-link"></span></a><span>GET Publicaciones</span></h3><p><span>Obtiene las publicaciones por state para un usuario registrado.</span></p><pre><code>/api/publication/{state}
 </code></pre><h5 id="HEADERS4" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS4" title="HEADERS4"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="PARAMETERS" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS" title="PARAMETERS"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>state:draft|published|complete
+</code></pre><h5 id="RESPONSES9" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES9" title="RESPONSES9"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+publications<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        pub_id<span class="token operator">:</span> number<span class="token punctuation">,</span>
+        pub<span class="token operator">:</span> <span class="token punctuation">{</span>
+            id<span class="token operator">:</span>number
+            title<span class="token operator">:</span>string
+            price<span class="token operator">:</span>number
+            category<span class="token operator">:</span>string
+            photos<span class="token operator">:</span> <span class="token punctuation">{</span>
+                name<span class="token operator">:</span>string
+                path<span class="token operator">:</span>string
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    ...
+<span class="token punctuation">]</span>
+</code></pre><h3 id="POST-Publicacion" data-id="POST-Publicacion"><a class="anchor hidden-xs" href="#POST-Publicacion" title="POST-Publicacion"><span class="octicon octicon-link"></span></a><span>POST Publicacion</span></h3><p><span>Añade una publicacion de un usuario</span></p><pre><code>/api/publication
+</code></pre><h5 id="HEADERS5" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS5" title="HEADERS5"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><h5 id="BODY6" data-id="BODY"><a class="anchor hidden-xs" href="#BODY6" title="BODY6"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>title:string
 price:number
 address:string
 category:string
 available:one|multiple
 description:string
-active:draft|published
-</code></pre><h5 id="RESPONSES9" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES9" title="RESPONSES9"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>[
-    {
-        "status_code": 200,
-        "message": "Publicación creada"
-    }
-    ...
-]
-</code></pre><p><span>Error</span></p><pre><code>status_code:number
-errors: [title?, price?, address?, category?, available?, description?, active? ], Error?
+photos:Files
+state:draft|published
+</code></pre><h5 id="RESPONSES10" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES10" title="RESPONSES10"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+message<span class="token operator">:</span> <span class="token string">"Publicación creada"</span>
+id<span class="token operator">:</span> **id de la transaccion**
+</code></pre><p><span>Error</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
+errors<span class="token operator">:</span> <span class="token punctuation">[</span>title?<span class="token punctuation">,</span> price?<span class="token punctuation">,</span> address?<span class="token punctuation">,</span> category?<span class="token punctuation">,</span> available?<span class="token punctuation">,</span> description?<span class="token punctuation">,</span> photos?<span class="token punctuation">,</span> active? <span class="token punctuation">]</span><span class="token punctuation">,</span> Error?
+</code></pre><h3 id="PUT-Publicacion" data-id="PUT-Publicacion"><a class="anchor hidden-xs" href="#PUT-Publicacion" title="PUT-Publicacion"><span class="octicon octicon-link"></span></a><span>PUT Publicacion</span></h3><p><span>Actualiza una publicacion de un usuario</span></p><pre><code>/api/publication/update/{id}
+</code></pre><h5 id="HEADERS6" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS6" title="HEADERS6"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="PARAMETERS1" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS1" title="PARAMETERS1"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>id:number - el id de la transaccion
+</code></pre><h5 id="BODY7" data-id="BODY"><a class="anchor hidden-xs" href="#BODY7" title="BODY7"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>title?:string
+price?:number
+address?:string
+category?:string
+available?:one|multiple
+description?:string
+state?:draft|published
+</code></pre><h5 id="RESPONSES11" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES11" title="RESPONSES11"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+message<span class="token operator">:</span> <span class="token string">"Publicación actualizada"</span>
+</code></pre><p><span>Error</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
+errors<span class="token operator">:</span> <span class="token punctuation">[</span>title?<span class="token punctuation">,</span> price?<span class="token punctuation">,</span> address?<span class="token punctuation">,</span> category?<span class="token punctuation">,</span> available?<span class="token punctuation">,</span> description?<span class="token punctuation">,</span> active? <span class="token punctuation">]</span><span class="token punctuation">,</span> Error?
 </code></pre></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
@@ -134,9 +165,9 @@ errors: [title?, price?, address?, category?, available?, description?, active? 
                 <i class="fa fa-bars"></i>
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
-                <div class="toc"><ul class="nav">
+                <div class="toc expand"><ul class="nav">
 <li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
-<li><a href="#URL" title="URL">URL</a><ul class="nav">
+<li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
 <li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
 <li><a href="#POST-Register" title="POST Register">POST Register</a></li>
 <li><a href="#POST-Login" title="POST Login">POST Login</a></li>
@@ -152,21 +183,23 @@ errors: [title?, price?, address?, category?, available?, description?, active? 
 <li><a href="#GET-Users" title="GET Users">GET Users</a></li>
 </ul>
 </li>
-<li><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li class=""><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li><a href="#GET-Publicaciones" title="GET Publicaciones">GET Publicaciones</a></li>
 <li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
+<li class=""><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Collapse all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
             </ul>
         </div>
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
-        <div class="toc"><ul class="nav">
+        <div class="toc expand"><ul class="nav">
 <li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
-<li><a href="#URL" title="URL">URL</a><ul class="nav">
+<li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
 <li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
 <li><a href="#POST-Register" title="POST Register">POST Register</a></li>
 <li><a href="#POST-Login" title="POST Login">POST Login</a></li>
@@ -182,14 +215,16 @@ errors: [title?, price?, address?, category?, available?, description?, active? 
 <li><a href="#GET-Users" title="GET Users">GET Users</a></li>
 </ul>
 </li>
-<li><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li class=""><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li><a href="#GET-Publicaciones" title="GET Publicaciones">GET Publicaciones</a></li>
 <li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
+<li class=""><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Collapse all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
