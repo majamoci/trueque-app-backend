@@ -142,8 +142,8 @@ class AuthController extends Controller
 
             // guardamos en la DB
             $reset = new Reset;
-            $rese->email = $request->reset_email;
-            $rese->code = $otp;
+            $reset->email = $request->reset_email;
+            $reset->code = $otp;
             $reset->save();
 
             Mail::to($request->reset_email)->send(new SendResetPassword($otp));
