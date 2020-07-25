@@ -109,7 +109,7 @@ message:string
     },
     ...
 ]
-</code></pre><h2 id="Publicaciones" data-id="Publicaciones" data-original-title="" title=""><a class="anchor hidden-xs" href="#Publicaciones" title="Publicaciones"><span class="octicon octicon-link"></span></a><span>Publicaciones</span></h2><hr><h3 id="GET-Publicaciones" data-id="GET-Publicaciones"><a class="anchor hidden-xs" href="#GET-Publicaciones" title="GET-Publicaciones"><span class="octicon octicon-link"></span></a><span>GET Publicaciones</span></h3><p><span>Obtiene las publicaciones por state para un usuario registrado.</span></p><pre><code>/api/publication/{state}
+</code></pre><h2 id="Publicaciones" data-id="Publicaciones"><a class="anchor hidden-xs" href="#Publicaciones" title="Publicaciones"><span class="octicon octicon-link"></span></a><span>Publicaciones</span></h2><hr><h3 id="GET-Publicaciones" data-id="GET-Publicaciones"><a class="anchor hidden-xs" href="#GET-Publicaciones" title="GET-Publicaciones"><span class="octicon octicon-link"></span></a><span>GET Publicaciones</span></h3><p><span>Obtiene las publicaciones por state para un usuario registrado.</span></p><pre><code>/api/publication/{state}
 </code></pre><h5 id="HEADERS4" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS4" title="HEADERS4"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><h5 id="PARAMETERS" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS" title="PARAMETERS"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>state:draft|published|complete
 </code></pre><h5 id="RESPONSES9" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES9" title="RESPONSES9"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
@@ -158,6 +158,13 @@ state?:draft|published
 message<span class="token operator">:</span> <span class="token string">"Publicación actualizada"</span>
 </code></pre><p><span>Error</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
 errors<span class="token operator">:</span> <span class="token punctuation">[</span>title?<span class="token punctuation">,</span> price?<span class="token punctuation">,</span> address?<span class="token punctuation">,</span> category?<span class="token punctuation">,</span> available?<span class="token punctuation">,</span> description?<span class="token punctuation">,</span> active? <span class="token punctuation">]</span><span class="token punctuation">,</span> Error?
+</code></pre><h3 id="DELETE-Publicacion" data-id="DELETE-Publicacion"><a class="anchor hidden-xs" href="#DELETE-Publicacion" title="DELETE-Publicacion"><span class="octicon octicon-link"></span></a><span>DELETE Publicacion</span></h3><p><span>Elimina una publicacion de un usuario</span></p><pre><code>/api/publication/delete/{id}
+</code></pre><h5 id="HEADERS7" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS7" title="HEADERS7"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="PARAMETERS2" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS2" title="PARAMETERS2"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>id:number - el id de la transaccion
+</code></pre><h5 id="RESPONSES12" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES12" title="RESPONSES12"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+message<span class="token operator">:</span> <span class="token string">"Publicación eliminada"</span>
+</code></pre><p><span>Error</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
+errors<span class="token operator">:</span> Error?
 </code></pre></div>
     <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
         <div class="pull-right dropdown">
@@ -165,7 +172,7 @@ errors<span class="token operator">:</span> <span class="token punctuation">[</s
                 <i class="fa fa-bars"></i>
             </a>
             <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
-                <div class="toc expand"><ul class="nav">
+                <div class="toc"><ul class="nav">
 <li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
 <li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
 <li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
@@ -186,18 +193,19 @@ errors<span class="token operator">:</span> <span class="token punctuation">[</s
 <li class=""><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
 <li><a href="#GET-Publicaciones" title="GET Publicaciones">GET Publicaciones</a></li>
 <li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
-<li class=""><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
+<li><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
+<li class=""><a href="#DELETE-Publicacion" title="DELETE Publicacion">DELETE Publicacion</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div><div class="toc-menu"><a class="expand-toggle" href="#">Collapse all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
             </ul>
         </div>
     </div>
     <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
-        <div class="toc expand"><ul class="nav">
+        <div class="toc"><ul class="nav">
 <li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
 <li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
 <li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
@@ -218,13 +226,14 @@ errors<span class="token operator">:</span> <span class="token punctuation">[</s
 <li class=""><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
 <li><a href="#GET-Publicaciones" title="GET Publicaciones">GET Publicaciones</a></li>
 <li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
-<li class=""><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
+<li><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
+<li class=""><a href="#DELETE-Publicacion" title="DELETE Publicacion">DELETE Publicacion</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-</div><div class="toc-menu"><a class="expand-toggle" href="#">Collapse all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">Expand all</a><a class="back-to-top" href="#">Back to top</a><a class="go-to-bottom" href="#">Go to bottom</a></div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>

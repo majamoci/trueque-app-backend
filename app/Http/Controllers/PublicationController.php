@@ -21,7 +21,7 @@ class PublicationController extends Controller
         $user_id = auth()->user()->id;
 
         // TODO: paginar las peticiones a futuro
-        $publications = PubTransaction::whereUserid($user_id)
+        $publications = PubTransaction::whereUserId($user_id)
             ->whereState($state)
             ->with('pub:id,title,price,category,photos')->get('pub_id');
 
@@ -191,8 +191,23 @@ class PublicationController extends Controller
      * @param  \App\Publication  $Publication
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Publication $Publication)
+    public function destroy($id)
     {
-        //
+        try {
+            $delete_transac = PubTransaction::find($id);
+            $delete_transac->pub()->delete();
+            $delete_transac->delete();
+            // PubTransaction::destroy($id);
+
+            return response()->json([
+                'status_code' => 200,
+                'message' => 'Publicación eliminada',
+            ], 200);
+        } catch (Exception $error) {
+            return response()->json([
+                'status_code' => 500,
+                'errors' => $error,
+            ], 500);
+        }
     }
 }

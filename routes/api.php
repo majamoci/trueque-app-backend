@@ -30,7 +30,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         // Route::get('/publication/one/{id}')
         Route::post('/publication', 'PublicationController@store');
         Route::put('/publication/update/{id}', 'PublicationController@update');
-        // Route::delete('/publication')
+        Route::delete('/publication/delete/{id}', 'PublicationController@destroy');
     });
 
     //   -----------------------------------------------------
