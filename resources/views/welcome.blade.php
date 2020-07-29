@@ -129,8 +129,25 @@ publications<span class="token operator">:</span> <span class="token punctuation
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     ...
 <span class="token punctuation">]</span>
-</code></pre><h3 id="POST-Publicacion" data-id="POST-Publicacion"><a class="anchor hidden-xs" href="#POST-Publicacion" title="POST-Publicacion"><span class="octicon octicon-link"></span></a><span>POST Publicacion</span></h3><p><span>Añade una publicacion de un usuario</span></p><pre><code>/api/publication
+</code></pre><h3 id="GET-Publicaciones-Usuario-no-registrado" data-id="GET-Publicaciones-Usuario-no-registrado"><a class="anchor hidden-xs" href="#GET-Publicaciones-Usuario-no-registrado" title="GET-Publicaciones-Usuario-no-registrado"><span class="octicon octicon-link"></span></a><span>GET Publicaciones (Usuario no registrado)</span></h3><p><span>Obtiene las publicaciones por categoria para un usuario no registrado.</span></p><pre><code>/api/publications/{category}
 </code></pre><h5 id="HEADERS5" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS5" title="HEADERS5"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="PARAMETERS1" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS1" title="PARAMETERS1"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>category:FRUT|HORT
+</code></pre><h5 id="RESPONSES10" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES10" title="RESPONSES10"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span><span class="token number">200</span><span class="token punctuation">,</span>
+publications<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+        pub_id<span class="token operator">:</span> number<span class="token punctuation">,</span>
+        trans_id<span class="token operator">:</span> number<span class="token punctuation">,</span>
+        state<span class="token operator">:</span> string<span class="token punctuation">,</span>
+        title<span class="token operator">:</span> string<span class="token punctuation">,</span>
+        price<span class="token operator">:</span> number<span class="token punctuation">,</span>
+        category<span class="token operator">:</span> string<span class="token punctuation">,</span>
+        photos<span class="token operator">:</span> json
+
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    ...
+<span class="token punctuation">]</span>
+</code></pre><h3 id="POST-Publicacion" data-id="POST-Publicacion"><a class="anchor hidden-xs" href="#POST-Publicacion" title="POST-Publicacion"><span class="octicon octicon-link"></span></a><span>POST Publicacion</span></h3><p><span>Añade una publicacion de un usuario</span></p><pre><code>/api/publication
+</code></pre><h5 id="HEADERS6" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS6" title="HEADERS6"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><h5 id="BODY6" data-id="BODY"><a class="anchor hidden-xs" href="#BODY6" title="BODY6"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>title:string
 price:number
 address:string
@@ -139,14 +156,14 @@ available:one|multiple
 description:string
 photos:Files
 state:draft|published
-</code></pre><h5 id="RESPONSES10" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES10" title="RESPONSES10"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+</code></pre><h5 id="RESPONSES11" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES11" title="RESPONSES11"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
 message<span class="token operator">:</span> <span class="token string">"Publicación creada"</span>
 id<span class="token operator">:</span> **id de la transaccion**
 </code></pre><p><span>Error</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
 errors<span class="token operator">:</span> <span class="token punctuation">[</span>title?<span class="token punctuation">,</span> price?<span class="token punctuation">,</span> address?<span class="token punctuation">,</span> category?<span class="token punctuation">,</span> available?<span class="token punctuation">,</span> description?<span class="token punctuation">,</span> photos?<span class="token punctuation">,</span> active? <span class="token punctuation">]</span><span class="token punctuation">,</span> Error?
 </code></pre><h3 id="PUT-Publicacion" data-id="PUT-Publicacion"><a class="anchor hidden-xs" href="#PUT-Publicacion" title="PUT-Publicacion"><span class="octicon octicon-link"></span></a><span>PUT Publicacion</span></h3><p><span>Actualiza una publicacion de un usuario</span></p><pre><code>/api/publication/update/{id}
-</code></pre><h5 id="HEADERS6" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS6" title="HEADERS6"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
-</code></pre><h5 id="PARAMETERS1" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS1" title="PARAMETERS1"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>id:number - el id de la transaccion
+</code></pre><h5 id="HEADERS7" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS7" title="HEADERS7"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="PARAMETERS2" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS2" title="PARAMETERS2"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>id:number - el id de la transaccion
 </code></pre><h5 id="BODY7" data-id="BODY"><a class="anchor hidden-xs" href="#BODY7" title="BODY7"><span class="octicon octicon-link"></span></a><span>BODY</span></h5><pre><code>title?:string
 price?:number
 address?:string
@@ -154,14 +171,14 @@ category?:string
 available?:one|multiple
 description?:string
 state?:draft|published
-</code></pre><h5 id="RESPONSES11" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES11" title="RESPONSES11"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+</code></pre><h5 id="RESPONSES12" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES12" title="RESPONSES12"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
 message<span class="token operator">:</span> <span class="token string">"Publicación actualizada"</span>
 </code></pre><p><span>Error</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
 errors<span class="token operator">:</span> <span class="token punctuation">[</span>title?<span class="token punctuation">,</span> price?<span class="token punctuation">,</span> address?<span class="token punctuation">,</span> category?<span class="token punctuation">,</span> available?<span class="token punctuation">,</span> description?<span class="token punctuation">,</span> active? <span class="token punctuation">]</span><span class="token punctuation">,</span> Error?
 </code></pre><h3 id="DELETE-Publicacion" data-id="DELETE-Publicacion"><a class="anchor hidden-xs" href="#DELETE-Publicacion" title="DELETE-Publicacion"><span class="octicon octicon-link"></span></a><span>DELETE Publicacion</span></h3><p><span>Elimina una publicacion de un usuario</span></p><pre><code>/api/publication/delete/{id}
-</code></pre><h5 id="HEADERS7" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS7" title="HEADERS7"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
-</code></pre><h5 id="PARAMETERS2" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS2" title="PARAMETERS2"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>id:number - el id de la transaccion
-</code></pre><h5 id="RESPONSES12" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES12" title="RESPONSES12"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
+</code></pre><h5 id="HEADERS8" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS8" title="HEADERS8"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
+</code></pre><h5 id="PARAMETERS3" data-id="PARAMETERS"><a class="anchor hidden-xs" href="#PARAMETERS3" title="PARAMETERS3"><span class="octicon octicon-link"></span></a><span>PARAMETERS</span></h5><pre><code>id:number - el id de la transaccion
+</code></pre><h5 id="RESPONSES13" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES13" title="RESPONSES13"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
 message<span class="token operator">:</span> <span class="token string">"Publicación eliminada"</span>
 </code></pre><p><span>Error</span></p><pre><code class="json hljs">status_code<span class="token operator">:</span>number
 errors<span class="token operator">:</span> Error?
@@ -175,26 +192,27 @@ errors<span class="token operator">:</span> Error?
                 <div class="toc"><ul class="nav">
 <li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
 <li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
-<li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
-<li><a href="#POST-Register" title="POST Register">POST Register</a></li>
-<li><a href="#POST-Login" title="POST Login">POST Login</a></li>
+<li class=""><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
+<li class=""><a href="#POST-Register" title="POST Register">POST Register</a></li>
+<li class=""><a href="#POST-Login" title="POST Login">POST Login</a></li>
 <li><a href="#POST-Send-Reset-Password" title="POST Send Reset Password">POST Send Reset Password</a></li>
 <li><a href="#POST-Verificar-OTP" title="POST Verificar OTP">POST Verificar OTP</a></li>
 <li><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
 </ul>
 </li>
-<li><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
+<li class=""><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
 <li><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
 <li><a href="#PUT-Profile" title="PUT Profile">PUT Profile</a></li>
 <li><a href="#DELETE-User" title="DELETE User">DELETE User</a></li>
-<li><a href="#GET-Users" title="GET Users">GET Users</a></li>
+<li class=""><a href="#GET-Users" title="GET Users">GET Users</a></li>
 </ul>
 </li>
-<li class=""><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
 <li><a href="#GET-Publicaciones" title="GET Publicaciones">GET Publicaciones</a></li>
+<li><a href="#GET-Publicaciones-Usuario-no-registrado" title="GET Publicaciones (Usuario no registrado)">GET Publicaciones (Usuario no registrado)</a></li>
 <li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
 <li><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
-<li class=""><a href="#DELETE-Publicacion" title="DELETE Publicacion">DELETE Publicacion</a></li>
+<li><a href="#DELETE-Publicacion" title="DELETE Publicacion">DELETE Publicacion</a></li>
 </ul>
 </li>
 </ul>
@@ -208,26 +226,27 @@ errors<span class="token operator">:</span> Error?
         <div class="toc"><ul class="nav">
 <li class=""><a href="#Trueque-API-DOCS" title="Trueque API DOCS">Trueque API DOCS</a></li>
 <li class=""><a href="#URL" title="URL">URL</a><ul class="nav">
-<li><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
-<li><a href="#POST-Register" title="POST Register">POST Register</a></li>
-<li><a href="#POST-Login" title="POST Login">POST Login</a></li>
+<li class=""><a href="#Rutas-Auth" title="Rutas Auth">Rutas Auth</a><ul class="nav">
+<li class=""><a href="#POST-Register" title="POST Register">POST Register</a></li>
+<li class=""><a href="#POST-Login" title="POST Login">POST Login</a></li>
 <li><a href="#POST-Send-Reset-Password" title="POST Send Reset Password">POST Send Reset Password</a></li>
 <li><a href="#POST-Verificar-OTP" title="POST Verificar OTP">POST Verificar OTP</a></li>
 <li><a href="#POST-Cambiar-contraseña" title="POST Cambiar contraseña">POST Cambiar contraseña</a></li>
 </ul>
 </li>
-<li><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
+<li class=""><a href="#Rutas-Autenticadas" title="Rutas Autenticadas">Rutas Autenticadas</a><ul class="nav">
 <li><a href="#GET-Profile" title="GET Profile">GET Profile</a></li>
 <li><a href="#PUT-Profile" title="PUT Profile">PUT Profile</a></li>
 <li><a href="#DELETE-User" title="DELETE User">DELETE User</a></li>
-<li><a href="#GET-Users" title="GET Users">GET Users</a></li>
+<li class=""><a href="#GET-Users" title="GET Users">GET Users</a></li>
 </ul>
 </li>
-<li class=""><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
+<li><a href="#Publicaciones" title="Publicaciones">Publicaciones</a><ul class="nav">
 <li><a href="#GET-Publicaciones" title="GET Publicaciones">GET Publicaciones</a></li>
+<li><a href="#GET-Publicaciones-Usuario-no-registrado" title="GET Publicaciones (Usuario no registrado)">GET Publicaciones (Usuario no registrado)</a></li>
 <li><a href="#POST-Publicacion" title="POST Publicacion">POST Publicacion</a></li>
 <li><a href="#PUT-Publicacion" title="PUT Publicacion">PUT Publicacion</a></li>
-<li class=""><a href="#DELETE-Publicacion" title="DELETE Publicacion">DELETE Publicacion</a></li>
+<li><a href="#DELETE-Publicacion" title="DELETE Publicacion">DELETE Publicacion</a></li>
 </ul>
 </li>
 </ul>

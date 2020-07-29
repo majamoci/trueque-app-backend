@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use App\User;
 use App\Publication;
 use App\PubTransaction;
+use App\Logic\HomeLogic;
 
 class PublicationController extends Controller
 {
@@ -24,6 +25,22 @@ class PublicationController extends Controller
         $publications = PubTransaction::whereUserId($user_id)
             ->whereState($state)
             ->with('pub:id,title,price,category,photos')->get('pub_id');
+
+        return response()->json([
+            'status_code' => 200,
+            'publications' => $publications
+        ], 200);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexActivePubs($category)
+    {
+        $items = new HomeLogic();
+        $publications = $items->getActivePubs($category);
 
         return response()->json([
             'status_code' => 200,

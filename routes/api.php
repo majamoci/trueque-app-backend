@@ -19,6 +19,10 @@ Route::post('/register', 'AuthController@register');
 Route::post('/send-reset-password', 'AuthController@sendResetPassword');
 Route::post('/verify-otp', 'AuthController@verifyOTP');
 Route::post('/reset-password', 'AuthController@resetPassword');
+// ------------------------------------------
+// ------------------Home--------------------
+Route::get('/publications/{category}', 'PublicationController@indexActivePubs');
+// ------------------------------------------
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users', 'UserController@findAll');
     Route::get('/profile/{name}', 'UserController@showProfile');
