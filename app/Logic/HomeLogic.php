@@ -18,7 +18,7 @@ class HomeLogic {
     public function getActivePubs(String $category)
     {
         // TODO: paginar las peticiones a futuro
-        return DB::table('pubs_transaction')
+        $result = DB::table('pubs_transaction')
             ->join('publications', 'pubs_transaction.pub_id', '=', 'publications.id')
             ->select(
                 'publications.id as pub_id',
@@ -30,5 +30,11 @@ class HomeLogic {
                 'publications.photos'
             )->where('publications.category', $category)
             ->whereState('published')->get();
+
+        foreach ($result as $item) {
+            $item->photos = json_decode($item->photos);
+            $item->price = round($item->price, 2);
+        }
+        return $result;
     }
 }
