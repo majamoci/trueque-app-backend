@@ -74,7 +74,7 @@ token:string
 errors: [reset_password?,verify_password?], Error?
 </code></pre><h2 id="Rutas-Autenticadas" data-id="Rutas-Autenticadas"><a class="anchor hidden-xs" href="#Rutas-Autenticadas" title="Rutas-Autenticadas"><span class="octicon octicon-link"></span></a><span>Rutas Autenticadas</span></h2><hr><h3 id="GET-Profile" data-id="GET-Profile"><a class="anchor hidden-xs" href="#GET-Profile" title="GET-Profile"><span class="octicon octicon-link"></span></a><span>GET Profile</span></h3><p><span>Consulta el perfil de un usuario registrado</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
 </code></pre><h5 id="RESPONSES5" data-id="RESPONSES"><a class="anchor hidden-xs" href="#RESPONSES5" title="RESPONSES5"><span class="octicon octicon-link"></span></a><span>RESPONSES</span></h5><p><span>OK</span></p><pre><code>status_code:number
-data:User
+profile:User
 </code></pre><h5 id="HEADERS" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS" title="HEADERS"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token
 </code></pre><p><span>El token se genera cuando el usuario se registra o se loguea.</span></p><h3 id="PUT-Profile" data-id="PUT-Profile"><a class="anchor hidden-xs" href="#PUT-Profile" title="PUT-Profile"><span class="octicon octicon-link"></span></a><span>PUT Profile</span></h3><p><span>Actualiza el perfil de un usuario registrado</span></p><pre><code>/api/profile/{NOMBRE_USUARIO}
 </code></pre><h5 id="HEADERS1" data-id="HEADERS"><a class="anchor hidden-xs" href="#HEADERS1" title="HEADERS1"><span class="octicon octicon-link"></span></a><span>HEADERS</span></h5><pre><code>Bearer token

@@ -35,7 +35,7 @@ class UserController extends Controller
 
         return response()->json([
             'status_code' => 200,
-            'data' => $user
+            'profile' => $user
         ], 200);
     }
 
