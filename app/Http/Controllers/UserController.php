@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Profile;
 
@@ -22,20 +23,61 @@ class UserController extends Controller
             ->header('Content-Type', 'application/json');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function showProfile($name)
+    public function showProfileforAdmin($name)
     {
-        $user = User::where('name', $name)->first();
-        $user->profile;
+        $result = DB::table('users')
+            ->join('profiles', 'profiles.user_id', '=', 'users.id')
+            ->select(
+                'users.id',
+                'users.name',
+                'profiles.firstname',
+                'profiles.lastname',
+                'profiles.city',
+                'profiles.telephone',
+                'profiles.mobile',
+            )->where("users.name",$name)->first();
+
+        if (is_null($result)) {
+            return response()->json([
+                'status_code' => 404,
+                'message' => "No encontrado"
+            ], 404);
+        }
 
         return response()->json([
             'status_code' => 200,
-            'profile' => $user
+            'profile' => $result
+        ], 200);
+    }
+
+    public function showProfile($name)
+    {
+        $result = DB::table('users')
+            ->join('profiles', 'profiles.user_id', '=', 'users.id')
+            ->select(
+                'users.id',
+                'users.name',
+                'users.email',
+                'profiles.firstname',
+                'profiles.lastname',
+                'profiles.gender',
+                'profiles.birthday',
+                'profiles.city',
+                'profiles.telephone',
+                'profiles.mobile',
+                'profiles.mobile_2',
+                'profiles.profession',
+                'profiles.facebook',
+                'profiles.twitter',
+                'profiles.instagram',
+                'profiles.whatsapp',
+                'profiles.telegram',
+                'profiles.interests',
+            )->where("users.name",$name)->first();
+
+        return response()->json([
+            'status_code' => 200,
+            'profile' => $result
         ], 200);
     }
 
@@ -48,9 +90,7 @@ class UserController extends Controller
      */
     public function updateProfile(Request $request, $name)
     {
-        $user = User::firstWhere('name', $name);
-        $update_profile = Profile::firstWhere('user_id', $user->id);
-
+        $update_profile = Profile::firstWhere('user_id', $request->id);
         $update_profile->firstname = $request->firstname;
         $update_profile->lastname = $request->lastname;
         $update_profile->gender = $request->gender;

@@ -26,7 +26,8 @@ Route::get('/publications/{category}', 'PublicationController@indexActivePubs');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users', 'UserController@findAll');
     Route::get('/profile/{name}', 'UserController@showProfile');
-    Route::put('/profile/{name}', 'UserController@updateProfile');
+    Route::get('/profile/mini/{name}', 'UserController@showProfileforAdmin');
+    Route::put('/profile', 'UserController@updateProfile');
     Route::delete('/profile/{name}', 'UserController@destroy');
     //   -----------------------------------------------------
     Route::middleware(['permission:USER'])->group(function () {
