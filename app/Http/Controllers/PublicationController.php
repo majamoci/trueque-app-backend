@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\User;
@@ -22,13 +23,24 @@ class PublicationController extends Controller
         $user_id = auth()->user()->id;
 
         // TODO: paginar las peticiones a futuro
-        $publications = PubTransaction::whereUserId($user_id)
-            ->whereState($state)
-            ->with('pub:id,title,price,category,photos')->get('pub_id');
+        $result = DB::table('pubs_transaction')
+            ->join('publications', 'publications.id', '=', 'pubs_transaction.pub_id')
+            ->select(
+                'publications.id',
+                'publications.title',
+                'publications.price',
+                'publications.category',
+                'publications.photos',
+            )->where("pubs_transaction.user_id", $user_id)
+            ->where("pubs_transaction.state", $state)->get();
+
+        foreach ($result as $item) {
+            $item->photos = json_decode($item->photos);
+        }
 
         return response()->json([
             'status_code' => 200,
-            'publications' => $publications
+            'publications' => $result
         ], 200);
     }
 
