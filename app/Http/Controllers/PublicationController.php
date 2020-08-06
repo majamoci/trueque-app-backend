@@ -36,6 +36,7 @@ class PublicationController extends Controller
 
         foreach ($result as $item) {
             $item->photos = json_decode($item->photos);
+            $item->price = (float) $item->price;
         }
 
         return response()->json([
