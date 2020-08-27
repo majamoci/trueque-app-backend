@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Publication extends Model
+class Offer extends Model
 {
-    protected $table = 'publications';
-    protected $fillable = ['title', 'address', 'available', 'description', 'photos', 'status'];
+    protected $table = 'offers';
+    protected $fillable = ['address', 'description', 'photos'];
+    protected $dates = ['created_at', 'updated_at'];
 
     public function trueque()
     {
@@ -24,3 +25,4 @@ class Publication extends Model
         return $this->belongsTo('App\User');
     }
 }
+

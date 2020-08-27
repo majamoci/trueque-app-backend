@@ -21,7 +21,7 @@ Route::post('/verify-otp', 'AuthController@verifyOTP');
 Route::post('/reset-password', 'AuthController@resetPassword');
 // ------------------------------------------
 // ------------------Home--------------------
-Route::get('/publications/{category}', 'PublicationController@indexActivePubs');
+Route::get('/publications/{category}', 'PublicationController@categories');
 // ------------------------------------------
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users', 'UserController@findAll');
@@ -31,12 +31,25 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/profile/{name}', 'UserController@destroy');
     //   -----------------------------------------------------
     Route::middleware(['permission:USER'])->group(function () {
+        //   -----------------------------------------------------
+        Route::get('/products', 'ProductController@index');
+        Route::get('/products/{id}', 'ProductController@show');
+        Route::post('/products', 'ProductController@store');
+        Route::post('/products/{id}', 'ProductController@update');
+        Route::delete('/products/{id}', 'ProductController@destroy');
+        //   -----------------------------------------------------
+        Route::get('/offers', 'OfferController@index');
+        Route::get('/offers/{id}', 'OfferController@show');
+        Route::post('/offers', 'OfferController@store');
+        Route::delete('/offers/{id}', 'OfferController@destroy');
+        //   -----------------------------------------------------
         Route::get('/publication/{state}', 'PublicationController@index');
-        // Route::get('/publication/one/{id}')
+        Route::get('/publication/detail/{id}', 'PublicationController@show');
         Route::post('/publication', 'PublicationController@store');
-        Route::put('/publication/update/{id}', 'PublicationController@update');
+        Route::post('/publication/update/{id}', 'PublicationController@update');
         Route::delete('/publication/delete/{id}', 'PublicationController@destroy');
+        //   -----------------------------------------------------
+        Route::post('/categoria', 'CategoriaController@store');
     });
 
-    //   -----------------------------------------------------
 });

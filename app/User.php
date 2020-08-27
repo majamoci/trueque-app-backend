@@ -38,12 +38,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+
+    public function publications()
+    {
+        return $this->hasMany('App\Publication');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany('App\Offer');
+    }
+
     public function roles()
     {
         return $this->hasMany('App\Role');
     }
 
     public function profile() {
-      return $this->hasOne('App\Profile');
+        return $this->hasOne('App\Profile');
+    }
+
+    public function location() {
+        return $this->hasOne('App\Location');
     }
 }

@@ -30,8 +30,6 @@ class CreateProfilesTable extends Migration
             $table->string('whatsapp')->nullable();
             $table->string('telegram')->nullable();
             $table->string('interests')->comment('se guardan en una cadena separada por comas')->nullable();
-            // coordenadas espaciales para la ubicacion
-            // $table->geometry('map_address');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
