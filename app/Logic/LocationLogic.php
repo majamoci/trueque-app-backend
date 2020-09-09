@@ -3,6 +3,7 @@
 namespace App\Logic;
 
 use Illuminate\Http\Request;
+use App\Location;
 
 class LocationLogic
 {
@@ -11,30 +12,23 @@ class LocationLogic
     public function __construct(Request $req = null) {
         $this->req = $req;
     }
-
+    //Obtiene todos las ubicaciones 
     public function getAll()
     {
-        $products = auth()->user()->products;
+        $items = Location::all();
 
-        $items = $products->filter(function ($item) {
-            $offers = $item->offers->map(function ($offr) {
-                $offr->photos = json_decode($offr->photos, true);
-
-                return $offr;
-            })->values()->toArray();
-
-            return $offers;
-        })->values()->toArray();
+        foreach ($items as $item) {
+            $item->lat = auth()->user()->location->lat;
+            $item->lng = auth()->user()->location->lng;
+        }
 
         return $items;
     }
 
-
-    public function getOne(Int $id)
+    // obtiene ubicacion por usuario
+    public function getOne(Int $user_id)
     {
-        $item = Offer::findOrFail($id);
-
-        $item->photos = json_decode($item->photos, true);
+        $item = Location::findOrFail($user_id);
 
         return $item;
     }
@@ -42,93 +36,49 @@ class LocationLogic
 
     public function store()
     {
-        $this->validate();
 
-        $this->saveProduct();
+        $this->saveLocation();
 
-        return "Oferta creada";
+        return "Ubicacion creada";
+    }
+
+    public function update(Int $user_id)
+    {
+
+        $this->updateLocation($user_id);
+
+        return "Locacion actualizada";
+    }
+
+    public function destroy(Int $user_id)
+    {
+        $this->deleteLocation($user_id);
+
+        return "Locacion eliminada";
     }
 
 
-    public function destroy(Int $id)
+
+    private function saveLocation()
     {
-        $this->deleteProduct($id);
-
-        return "Oferta eliminada";
-    }
-
-
-    private function validate()
-    {
-        $validator = Validator::make($this->req->all(), [
-            'address' => 'required|string|max:100',
-            'description' => 'required|string|max:500',
-        ]);
-
-        // si la validacion falla
-        if ($validator->fails()) {
-            return response()->json([
-                'status_code' => 403,
-                'errors' => $validator->errors(),
-            ], 403);
-        }
-    }
-
-
-    private function uploadAngGetImgName($image, String $sub_name)
-    {
-        $img = Image::make($image)
-            ->resize(null, 400, function ($constraint) {
-                $constraint->aspectRatio();
-            })->encode('jpg');
-
-        $name = time()."_{$sub_name}.jpg";
-
-        Storage::disk('public')->put($name, $img);
-
-        return $name;
-    }
-
-
-    private function uploadImagesAndGetJson()
-    {
-        $new_photos = [];
-
-        if ($this->req->hasFile('photos')) {
-            $images = $this->req->photos;
-
-            foreach ($images as $key => $image) {
-                $new_photos[] = array(
-                    'path' => $this->uploadAngGetImgName($image, (string) $key)
-                );
-            }
-
-            return json_encode($new_photos);
-        }
-    }
-
-
-    private function saveProduct()
-    {
-        $item = new Offer;
-        $item->product_id = $this->req->product_id;
-        $item->address = $this->req->address;
-        $item->description = $this->req->description;
-        $item->photos = $this->uploadImagesAndGetJson();
+        $item = new Location;
+        $item->user_id = auth()->user()->id;
+        $item->lat = $this->req->lat;
+        $item->lng = $this->req->lng;
         $item->save();
     }
 
-
-    private function deleteProduct(Int $id)
+    private function updateLocation(Int $user_id)
     {
-        $item = Offer::findOrFail($id);
+        $item = Location::findOrFail($user_id);
+        $item->lat = $this->req->lat;
+        $item->lng = $this->req->lng;
+        $item->save();
+    }
 
-        $rm_items = json_decode($item->photos, true);
-
-        foreach ($rm_items as $path) {
-            Storage::disk('public')->delete($path);
-        }
-
+    private function deleteLocation(Int $user_id)
+    {
+        $item = Location::findOrFail($user_id);
         $item->delete();
     }
 }
