@@ -70,6 +70,7 @@ class OfferLogic
         $validator = Validator::make($this->req->all(), [
             'address' => 'required|string|max:100',
             'description' => 'required|string|max:500',
+            'photos' => 'required',
         ]);
 
         // si la validacion falla
@@ -118,6 +119,7 @@ class OfferLogic
     private function saveProduct()
     {
         $item = new Offer;
+        $item->user_id = $this->req->user_id;
         $item->product_id = $this->req->product_id;
         $item->address = $this->req->address;
         $item->description = $this->req->description;

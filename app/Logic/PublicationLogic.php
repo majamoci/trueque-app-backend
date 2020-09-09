@@ -54,6 +54,8 @@ class PublicationLogic
         $item = Publication::findOrFail($id);
 
         $item->photos = json_decode($item->photos, true);
+        $item->lat = auth()->user()->location->lat;
+        $item->lng = auth()->user()->location->lng;
         $item->product;
 
         return $item;
@@ -65,6 +67,8 @@ class PublicationLogic
         $pubs = Publication::whereStatus('published')
             ->take(10)->get();
 
+        // TODO: Obtener la distancia entre la publicación y el usuario que navega
+        // Retornar solo las publicaciones en un rango de 1km.
         $items = $pubs->filter(function ($item) use (&$category) {
             $item->photos = json_decode($item->photos, true);
 
@@ -187,6 +191,7 @@ class PublicationLogic
     private function saveProduct()
     {
         $item = new Publication;
+        $item->user_id = $this->req->user_id;
         $item->product_id = $this->req->product_id;
         $item->title = $this->req->title;
         $item->address = $this->req->address;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Profile;
+use App\Logic\UserLogic;
 
 class UserController extends Controller
 {
@@ -22,6 +23,16 @@ class UserController extends Controller
         return response($usuarios, 200)
             ->header('Content-Type', 'application/json');
     }
+
+
+    public function findOne()
+    {
+        $uLogic = new UserLogic();
+        $item = $uLogic->findAuthUser();
+
+        return response()->json($item, 200);
+    }
+
 
     public function showProfileforAdmin($name)
     {

@@ -18,7 +18,6 @@ class PublicationController extends Controller
         $req = new PublicationLogic();
         $items = $req->getAll($state);
 
-        // dd($items[0]);
         return response()->json([
             'status_code' => 200,
             'pubs' => $items
@@ -33,7 +32,7 @@ class PublicationController extends Controller
 
         return response()->json([
             'status_code' => 200,
-            'publications' => $publications
+            'pubs' => $publications
         ], 200);
     }
 
@@ -57,7 +56,7 @@ class PublicationController extends Controller
 
         return response()->json([
             'status_code' => 200,
-            'publication' => $item
+            'pub' => $item
         ] , 200);
     }
 

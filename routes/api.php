@@ -25,6 +25,7 @@ Route::get('/publications/{category}', 'PublicationController@categories');
 // ------------------------------------------
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users', 'UserController@findAll');
+    Route::get('/user', 'UserController@findOne');
     Route::get('/profile/{name}', 'UserController@showProfile');
     Route::get('/profile/mini/{name}', 'UserController@showProfileforAdmin');
     Route::put('/profile', 'UserController@updateProfile');
