@@ -56,10 +56,10 @@ class TruequeLogic
      */
     public function changeStatus()
     {
-        $item = Trueque::find($this->req->id);
+        $item = Trueque::find($this->req->trueque_id);
         $item->status = $this->req->status;
         $item->save();
 
-        return "Operacion realizada";
+        return "Operacion realizada: {$this->req->status}";
     }
 }
