@@ -56,6 +56,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/transactions/pubs', 'TruequeController@pubs');
         Route::get('/transactions/offers', 'TruequeController@offers');
         Route::post('/transaction', 'TruequeController@action');
+        //   -----------------------------------------------------
+        Route::get('/locations', 'LocationController@index');
+        Route::get('/locations/detail/{user_id}', 'LocationController@show');
+        Route::post('/locations', 'LocationController@store');
+        Route::post('/locations/update/{id}', 'LocationController@update');
+        Route::delete('/locations/delete/{id}', 'LocationController@destroy');
     });
 
 });
