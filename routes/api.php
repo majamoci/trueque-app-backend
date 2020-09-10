@@ -49,7 +49,18 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/publication/update/{id}', 'PublicationController@update');
         Route::delete('/publication/delete/{id}', 'PublicationController@destroy');
         //   -----------------------------------------------------
-        Route::post('/categoria', 'CategoriaController@store');
+        
+
+    });
+
+    Route::middleware(['permission:ADMIN'])->group(function () {
+        Route::post('/markettype', 'MarkettypeController@store');
+        Route::post('/unitmeasure', 'UnitMeasureController@store');
+        Route::post('/register_categories', 'RegisterCategoryController@store');
+        Route::post('/register_market_sectors', 'RegisterMarketSectorController@store');
+        //
+        Route::post('/register_system_products', 'RegisterSystemProductController@store');
+        
     });
 
 });
