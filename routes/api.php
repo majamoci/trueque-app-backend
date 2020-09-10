@@ -21,11 +21,12 @@ Route::post('/verify-otp', 'AuthController@verifyOTP');
 Route::post('/reset-password', 'AuthController@resetPassword');
 // ------------------------------------------
 // ------------------Home--------------------
-Route::get('/publications/{category}', 'PublicationController@categories');
+Route::get('/publications/category/{category}', 'PublicationController@categories');
 // ------------------------------------------
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/users', 'UserController@findAll');
     Route::get('/user', 'UserController@findOne');
+    Route::get('/profile/{name}', 'UserController@showProfile');
     Route::get('/profile/{name}', 'UserController@showProfile');
     Route::get('/profile/mini/{name}', 'UserController@showProfileforAdmin');
     Route::put('/profile', 'UserController@updateProfile');
@@ -54,6 +55,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
         //   -----------------------------------------------------
         Route::get('/transactions/pubs', 'TruequeController@pubs');
         Route::get('/transactions/offers', 'TruequeController@offers');
+        Route::post('/transaction', 'TruequeController@action');
     });
 
 });

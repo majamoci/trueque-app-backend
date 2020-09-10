@@ -84,7 +84,8 @@ class UserController extends Controller
                 'profiles.whatsapp',
                 'profiles.telegram',
                 'profiles.interests',
-            )->where("users.name",$name)->first();
+            )->where("users.name",$name)
+            ->orWhere('users.id', $name)->first();
 
         return response()->json([
             'status_code' => 200,

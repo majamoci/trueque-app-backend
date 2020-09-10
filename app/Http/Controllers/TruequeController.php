@@ -29,4 +29,16 @@ class TruequeController extends Controller
             'by_offers' => $items
         ] , 200);
     }
+
+
+    public function action(Request $request)
+    {
+        $req = new TruequeLogic($request);
+        $notify = $req->changeStatus();
+
+        return response()->json([
+            'status_code' => 200,
+            'mesage' => $notify
+        ] , 200);
+    }
 }

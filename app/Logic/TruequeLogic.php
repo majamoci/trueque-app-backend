@@ -35,6 +35,7 @@ class TruequeLogic
         return $items;
     }
 
+
     /**
      * Retorna todas mis publicaciones que han sido ofertadas
      */
@@ -47,5 +48,18 @@ class TruequeLogic
         })->get();
 
         return $items;
+    }
+
+
+    /**
+     * Retorna todas mis publicaciones que han sido ofertadas
+     */
+    public function changeStatus()
+    {
+        $item = Trueque::find($this->req->id);
+        $item->status = $this->req->status;
+        $item->save();
+
+        return "Operacion realizada";
     }
 }

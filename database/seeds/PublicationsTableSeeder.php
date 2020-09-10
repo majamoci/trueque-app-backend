@@ -11,7 +11,6 @@ class PublicationsTableSeeder extends Seeder
      */
     public function run()
     {
-        
         DB::table('publications')->insert([
             'id' => 1,
             'title' => 'Manzanas',
