@@ -14,7 +14,7 @@ class OfferController extends Controller
 
         return response()->json([
             'status_code' => 200,
-            'offers' => $items
+            'products' => $items
         ] , 200);
     }
 
@@ -26,7 +26,7 @@ class OfferController extends Controller
 
         return response()->json([
             'status_code' => 200,
-            'message' => $notify
+            'offer_id' => $notify
         ] , 200);
     }
 

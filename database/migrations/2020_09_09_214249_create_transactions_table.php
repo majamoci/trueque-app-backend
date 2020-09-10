@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTruequesTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateTruequesTable extends Migration
      */
     public function up()
     {
-        Schema::create('trueques', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('pub_id')->constrained('publications');
             $table->foreignId('offer_id')->constrained('offers');
             $table->string('status', 100);
@@ -29,6 +30,6 @@ class CreateTruequesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trueques');
+        Schema::dropIfExists('transactions');
     }
 }

@@ -44,13 +44,16 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/offers', 'OfferController@store');
         Route::delete('/offers/{id}', 'OfferController@destroy');
         //   -----------------------------------------------------
-        Route::get('/publication/{state}', 'PublicationController@index');
-        Route::get('/publication/detail/{id}', 'PublicationController@show');
+        Route::get('/publications/{state}', 'PublicationController@index');
+        Route::get('/publication/{id}', 'PublicationController@show');
         Route::post('/publication', 'PublicationController@store');
         Route::post('/publication/update/{id}', 'PublicationController@update');
         Route::delete('/publication/delete/{id}', 'PublicationController@destroy');
         //   -----------------------------------------------------
         Route::post('/categoria', 'CategoriaController@store');
+        //   -----------------------------------------------------
+        Route::get('/transactions/pubs', 'TruequeController@pubs');
+        Route::get('/transactions/offers', 'TruequeController@offers');
     });
 
 });

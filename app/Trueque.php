@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PubTransaction extends Model
+class Trueque extends Model
 {
-    protected $table = "trueques";
-    protected $fillable = ['pub_id', 'offer_id', 'status'];
+    protected $table = "transactions";
+    protected $fillable = ['user_id', 'pub_id', 'offer_id', 'status'];
 
     public function pub() {
         return $this->belongsTo('App\Publication');
@@ -15,5 +15,9 @@ class PubTransaction extends Model
 
     public function offer() {
         return $this->belongsTo('App\Offer');
+    }
+
+    public function user() {
+        return $this->belongsTo('App\User');
     }
 }

@@ -42,6 +42,7 @@ class OfferLogic
         $item = Offer::findOrFail($id);
 
         $item->photos = json_decode($item->photos, true);
+        $item->product;
 
         return $item;
     }
@@ -51,15 +52,13 @@ class OfferLogic
     {
         $this->validate();
 
-        $this->saveProduct();
-
-        return "Oferta creada";
+        return $this->saveOffer();
     }
 
 
     public function destroy(Int $id)
     {
-        $this->deleteProduct($id);
+        $this->deleteOffer($id);
 
         return "Oferta eliminada";
     }
@@ -116,7 +115,7 @@ class OfferLogic
     }
 
 
-    private function saveProduct()
+    private function saveOffer()
     {
         $item = new Offer;
         $item->user_id = $this->req->user_id;
@@ -125,10 +124,12 @@ class OfferLogic
         $item->description = $this->req->description;
         $item->photos = $this->uploadImagesAndGetJson();
         $item->save();
+
+        return $item->id;
     }
 
 
-    private function deleteProduct(Int $id)
+    private function deleteOffer(Int $id)
     {
         $item = Offer::findOrFail($id);
 
