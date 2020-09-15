@@ -5,9 +5,9 @@ namespace App\Logic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Exceptions\ApiErrorException;
-use App\RegisterSystemProduct;
+use App\RegisterMarket;
 
-class SystemProductLogic{
+class MarketLogic{
 
     private $req;
 
@@ -19,15 +19,15 @@ class SystemProductLogic{
     {
         $this->validate();
 
-        $this->saveSystemProduct();
+        $this->saveMarket();
 
-        return "Producto creado";
+        return "Mercado creado";
     }
 
     private function validate()
     {
         $validator = Validator::make($this->req->all(), [
-            'name_sys_prod' => 'required|string'
+            'name_market' => 'required|string'
         ]);
 
         // si la validacion falla
@@ -39,25 +39,18 @@ class SystemProductLogic{
         }
     }
 
-    private function saveSystemProduct()
+    private function saveMarket()
     {
-        $item = new RegisterSystemProduct;
+        $item = new RegisterMarket;
         //$item->categories_id = $this->req->id;
         
-        $item->categories_id = $this->req->categories_id;
-        $item->name_sys_prod = $this->req->name_sys_prod;
+        $item->marketsectors_id = $this->req->marketsectors_id;
+        $item->markettypes_id = $this->req->markettypes_id;
+        $item->name_market = $this->req->name_market;
         //$item->price = $this->req->price;
         //$item->category = $this->req->category;
         $item->save();
     }
 
-    public function getAll()
-    {
-        
-        $items=RegisterSystemProduct::select('id', 'name_sys_prod')
-        ->get();
-        return $items;
-        
-    }
 
 }

@@ -60,6 +60,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/register_market_sectors', 'RegisterMarketSectorController@store');
         //
         Route::post('/register_system_products', 'RegisterSystemProductController@store');
+        Route::post('/register-market', 'RegisterMarketController@store');
+        Route::post('/register_price', 'RegisterPriceController@store');
+
+        //
+        Route::get('/system_products', 'RegisterSystemProductController@index');
+
+
         
     });
 

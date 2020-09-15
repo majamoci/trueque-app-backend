@@ -2,31 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\RegisterSystemProduct;
-use Illuminate\Http\Request;
-use App\Logic\SystemProductLogic;
 
-class RegisterSystemProductController extends Controller
+use Illuminate\Http\Request;
+use App\Logic\RegisterPriceLogic;
+
+class RegisterPriceController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()//para consulta todos
+    public function index()
     {
         //
-        $req = new SystemProductLogic();
-        $items = $req->getAll();
-
-        //$req = new OfferLogic();
-        //$items = $req->getAll();
-
-        // dd($items[0]);
-        return response()->json([
-            'status_code' => 200,
-            'pubs' => $items
-        ] , 200);
     }
 
     /**
@@ -48,7 +37,7 @@ class RegisterSystemProductController extends Controller
     public function store(Request $request)
     {
         //
-        $req = new SystemProductLogic($request);
+        $req = new RegisterPriceLogic($request);
         $notify = $req->store();
 
         return response()->json([
@@ -60,10 +49,10 @@ class RegisterSystemProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RegisterSystemProduct  $registerSystemProduct
+     * @param  \App\RegisterPrice  $registerPrice
      * @return \Illuminate\Http\Response
      */
-    public function show(RegisterSystemProduct $registerSystemProduct)
+    public function show(RegisterPrice $registerPrice)
     {
         //
     }
@@ -71,10 +60,10 @@ class RegisterSystemProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RegisterSystemProduct  $registerSystemProduct
+     * @param  \App\RegisterPrice  $registerPrice
      * @return \Illuminate\Http\Response
      */
-    public function edit(RegisterSystemProduct $registerSystemProduct)
+    public function edit(RegisterPrice $registerPrice)
     {
         //
     }
@@ -83,10 +72,10 @@ class RegisterSystemProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RegisterSystemProduct  $registerSystemProduct
+     * @param  \App\RegisterPrice  $registerPrice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RegisterSystemProduct $registerSystemProduct)
+    public function update(Request $request, RegisterPrice $registerPrice)
     {
         //
     }
@@ -94,10 +83,10 @@ class RegisterSystemProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RegisterSystemProduct  $registerSystemProduct
+     * @param  \App\RegisterPrice  $registerPrice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RegisterSystemProduct $registerSystemProduct)
+    public function destroy(RegisterPrice $registerPrice)
     {
         //
     }

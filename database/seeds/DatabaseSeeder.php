@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RegisterMarketSectorTableSeeder::class);
         $this->call(RegisterSystemProductTableSeeder::class);
         $this->call(RegisterMarketTableSeeder::class);
+        $this->call(RegisterPriceTableSeeder::class);
     }
 }

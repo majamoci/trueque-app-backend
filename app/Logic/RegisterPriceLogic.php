@@ -5,9 +5,10 @@ namespace App\Logic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Exceptions\ApiErrorException;
-use App\RegisterSystemProduct;
+use App\RegisterPrice;
 
-class SystemProductLogic{
+
+class RegisterPriceLogic{
 
     private $req;
 
@@ -19,15 +20,15 @@ class SystemProductLogic{
     {
         $this->validate();
 
-        $this->saveSystemProduct();
+        $this->savePrice();
 
-        return "Producto creado";
+        return "Se ha registrado el precio";
     }
 
     private function validate()
     {
         $validator = Validator::make($this->req->all(), [
-            'name_sys_prod' => 'required|string'
+            'price_prod' => 'required|numeric'
         ]);
 
         // si la validacion falla
@@ -39,25 +40,17 @@ class SystemProductLogic{
         }
     }
 
-    private function saveSystemProduct()
+    private function savePrice()
     {
-        $item = new RegisterSystemProduct;
-        //$item->categories_id = $this->req->id;
-        
-        $item->categories_id = $this->req->categories_id;
-        $item->name_sys_prod = $this->req->name_sys_prod;
-        //$item->price = $this->req->price;
-        //$item->category = $this->req->category;
+        $item = new RegisterPrice;    
+        $item->system_products_id = $this->req->system_products_id;
+        $item->market_id = $this->req->market_id;
+        $item->unit_measures_id = $this->req->unit_measures_id;
+        $item->date_price = $this->req->date_price;
+        $item->price_prod = $this->req->price_prod;
         $item->save();
     }
 
-    public function getAll()
-    {
-        
-        $items=RegisterSystemProduct::select('id', 'name_sys_prod')
-        ->get();
-        return $items;
-        
-    }
 
 }
+

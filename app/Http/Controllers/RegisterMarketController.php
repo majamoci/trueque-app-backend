@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\RegisterMarket;
+//use App\RegisterMarket;
 use Illuminate\Http\Request;
+use App\Logic\MarketLogic;
 
 class RegisterMarketController extends Controller
 {
@@ -36,6 +37,13 @@ class RegisterMarketController extends Controller
     public function store(Request $request)
     {
         //
+        $req = new MarketLogic($request);
+        $notify = $req->store();
+
+        return response()->json([
+            'status_code' => 200,
+            'message' => $notify
+        ] , 200);
     }
 
     /**
