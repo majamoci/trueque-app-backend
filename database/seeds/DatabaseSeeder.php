@@ -16,5 +16,12 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfilesTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
         $this->call(PublicationsTableSeeder::class);
+        $this->call(MarkettypesTableSeeder::class);
+        $this->call(UnitMeasureTableSeeder::class);
+        $this->call(RegisterCategoryTableSeeder::class);
+        $this->call(RegisterMarketSectorTableSeeder::class);
+        $this->call(RegisterSystemProductTableSeeder::class);
+        $this->call(RegisterMarketTableSeeder::class);
+        $this->call(RegisterPriceTableSeeder::class);
     }
 }
