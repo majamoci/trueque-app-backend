@@ -11,6 +11,7 @@ use App\User;
 use App\Role;
 use App\Reset;
 use App\Profile;
+use App\Location;
 use App\Mail\SendResetPassword;
 
 class AuthController extends Controller
@@ -103,6 +104,12 @@ class AuthController extends Controller
             $profile->city = '';
             $profile->mobile = '';
             $new_user->profile()->save($profile);
+
+            // añadimos un perfil
+            $location = new Location;
+            $location->lat = 0.000000;
+            $location->lng = 0.000000;
+            $new_user->location()->save($location);
 
             // generamos el token con el rol USER
             $tokenResult = $new_user->createToken('authToken', ["role:USER"])->plainTextToken;

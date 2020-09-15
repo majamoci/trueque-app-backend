@@ -69,13 +69,20 @@ class PublicationLogic
 
         // TODO: Obtener la distancia entre la publicación y el usuario que navega
         // Retornar solo las publicaciones en un rango de 1km.
-        $items = $pubs->filter(function ($item) use (&$category) {
-            $item->photos = json_decode($item->photos, true);
+        // $items = $pubs->filter(function ($item) use (&$category) {
+        //     $item->photos = json_decode($item->photos, true);
 
-            return $item->product->category === $category;
-        });
+        //     return $item->product->category === $category;
+        // });
+        $filter_pubs = [];
+        foreach ($pubs as $item) {
+            if ($item->product->category === $category) {
+                $item->photos = json_decode($item->photos, true);
+                $filter_pubs[] = $item;
+            }
+        }
 
-        return $items;
+        return $filter_pubs;
     }
 
 

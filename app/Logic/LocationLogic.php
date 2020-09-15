@@ -12,7 +12,7 @@ class LocationLogic
     public function __construct(Request $req = null) {
         $this->req = $req;
     }
-    //Obtiene todos las ubicaciones 
+    //Obtiene todos las ubicaciones
     public function getAll()
     {
         $items = Location::all();
