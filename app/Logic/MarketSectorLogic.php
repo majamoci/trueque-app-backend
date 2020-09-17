@@ -47,4 +47,13 @@ class MarketSectorLogic{
         $item->save();
     }
 
+    public function getAll()
+    {
+        
+        $items=RegisterMarketSector::select('id', 'name_str')
+        ->get();
+        return $items;
+        
+    }
+
 }

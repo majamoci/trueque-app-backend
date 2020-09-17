@@ -16,6 +16,17 @@ class RegisterCategoryController extends Controller
     public function index()
     {
         //
+        $req = new CategoryLogic();
+        $items = $req->getAll();
+
+        //$req = new OfferLogic();
+        //$items = $req->getAll();
+
+        // dd($items[0]);
+        return response()->json([
+            'status_code' => 200,
+            'pubs' => $items
+        ] , 200);
     }
 
     /**

@@ -16,6 +16,17 @@ class RegisterMarketSectorController extends Controller
     public function index()
     {
         //
+        $req = new MarketSectorLogic();
+        $items = $req->getAll();
+
+        //$req = new OfferLogic();
+        //$items = $req->getAll();
+
+        // dd($items[0]);
+        return response()->json([
+            'status_code' => 200,
+            'pubs' => $items
+        ] , 200);
     }
 
     /**

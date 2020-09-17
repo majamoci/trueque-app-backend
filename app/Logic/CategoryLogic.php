@@ -47,4 +47,12 @@ class CategoryLogic{
         $item->save();
     }
 
+    public function getAll()
+    {
+        
+        $items=RegisterCategory::select('id', 'name_gtgry')
+        ->get();
+        return $items;
+        
+    }
 }

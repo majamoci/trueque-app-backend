@@ -56,7 +56,14 @@ class MarkettypeLogic {
     }
 
 
-
+    public function getAll()
+    {
+        
+        $items=Markettype::select('id', 'name_tp')
+        ->get();
+        return $items;
+        
+    }
 
 
 }
