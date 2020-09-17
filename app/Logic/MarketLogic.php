@@ -52,5 +52,13 @@ class MarketLogic{
         $item->save();
     }
 
+    public function getAll()
+    {
+        
+        $items=RegisterMarket::select('id', 'name_market')
+        ->get();
+        return $items;
+        
+    }
 
 }

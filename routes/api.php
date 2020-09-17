@@ -78,5 +78,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
         //
         Route::get('/system_products', 'RegisterSystemProductController@index');
+        Route::get('/product_category', 'RegisterCategoryController@index');
+        Route::get('/markets', 'RegisterMarketController@index');
+        Route::get('/unit_measures', 'UnitMeasureController@index');
+        Route::get('/market_types', 'MarkettypeController@index');
+        Route::get('/market_sectors', 'RegisterMarketSectorController@index');
     });
 });

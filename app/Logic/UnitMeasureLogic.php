@@ -51,4 +51,12 @@ class UnitMeasureLogic {
         $item->save();
     }
 
+    public function getAll()
+    {
+        
+        $items=UnitMeasure::select('id', 'name_measure')
+        ->get();
+        return $items;
+        
+    }
 }
