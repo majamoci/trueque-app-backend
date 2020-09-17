@@ -15,7 +15,13 @@ class RegisterPriceController extends Controller
      */
     public function index()
     {
-        //
+        $req = new RegisterPriceLogic();
+        $items = $req->getAll();
+
+        return response()->json([
+            'status_code' => 200,
+            'products' => $items
+        ] , 200);
     }
 
     /**

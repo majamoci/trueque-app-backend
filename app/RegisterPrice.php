@@ -8,10 +8,10 @@ class RegisterPrice extends Model
 {
     //
     protected $table = 'register_prices';
-    protected $fillable = ['date_price','price_prod'];
+    protected $fillable = ['system_products_id', 'date_price','price_prod'];
     protected $dates = ['created_at', 'updated_at'];
-    
-    public function registerSystemProd()
+
+    public function systemProducts()
     {
         return $this->belongsTo('App\RegisterSystemProduct');
     }

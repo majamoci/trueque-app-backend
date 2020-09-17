@@ -43,7 +43,7 @@ class SystemProductLogic{
     {
         $item = new RegisterSystemProduct;
         //$item->categories_id = $this->req->id;
-        
+
         $item->categories_id = $this->req->categories_id;
         $item->name_sys_prod = $this->req->name_sys_prod;
         //$item->price = $this->req->price;
@@ -53,11 +53,11 @@ class SystemProductLogic{
 
     public function getAll()
     {
-        
-        $items=RegisterSystemProduct::select('id', 'name_sys_prod')
-        ->get();
+
+        $items = RegisterSystemProduct::query()
+            ->select('id', 'name_sys_prod')->get();
         return $items;
-        
+
     }
 
 }

@@ -18,8 +18,6 @@ class CreateRegisterPricesTable extends Migration
             $table->foreignId('system_products_id')->constrained('register_system_products');
             $table->foreignId('market_id')->constrained('register_markets');
             $table->foreignId('unit_measures_id')->constrained('unit_measures');
-            //$date = Carbon::now();
-            //$date = $date->format('d-m-Y');
             $table->date('date_price');
             $table->decimal('price_prod', 13,4);
             $table->timestamps();

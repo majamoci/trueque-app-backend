@@ -62,6 +62,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/locations', 'LocationController@store');
         Route::post('/locations/update/{id}', 'LocationController@update');
         Route::delete('/locations/delete/{id}', 'LocationController@destroy');
+        //   -----------------------------------------------------
+        Route::get('/system-available-products', 'RegisterPriceController@index');
     });
 
     Route::middleware(['permission:ADMIN'])->group(function () {
@@ -77,5 +79,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
         //
         Route::get('/system_products', 'RegisterSystemProductController@index');
     });
-
 });
